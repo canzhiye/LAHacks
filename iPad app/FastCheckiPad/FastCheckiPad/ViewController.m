@@ -17,6 +17,10 @@ const int kSignedInTableViewTag = 1;
 const int kNotSignedInTableViewTag = 2;
 NSString *kPassword = @"HelloJuniorYear2012";
 
+#define COLOR_MEDIUM_GRAY [UIColor colorWithRed:(84.0/255.0) green:(84.0/255.0) blue:(84.0/255.0) alpha:1.0]
+#define COLOR_BG_GRAY [UIColor colorWithRed:(235.0/255.0) green:(235.0/255.0) blue:(235.0/255.0) alpha:1.0]
+#define COLOR_LINE_GRAY [UIColor colorWithRed:(180.0/255.0) green:(180.0/255.0) blue:(180.0/255.0) alpha:1.0]
+
 @interface ViewController ()
 @property (nonatomic) JGBeacon *beacon;
 
@@ -25,9 +29,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
 @implementation ViewController
 @synthesize eventsTableView, signedInTableView, notSignedInTableView;
 
-- (void)viewDidLoad
-{
-    
+- (void)viewDidLoad {
     arrayOfEvents = [[NSMutableArray alloc]init];
     arrayOfSignedIn = [[NSMutableArray alloc]init];
     arrayOfNotSignedIn = [[NSMutableArray alloc]init];
@@ -37,8 +39,6 @@ NSString *kPassword = @"HelloJuniorYear2012";
     
     currentIndex = 0;
     
-    self.navigationController.navigationBar.hidden = YES;
-    //fuck us
     self.beacon = [JGBeacon beacon];
     self.beacon.delegate = self;
     self.beacon.running = JGBeaconSendingAndReceiving;
@@ -47,8 +47,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
     if (accessToken.length > 0) {
         [self loadEventDataWithAccessToken:accessToken];
         [self loadAttendeesWithAccessToken:accessToken];
-    }
-    else {
+    } else {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
         NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=6DFNDX6C6HYXX5IY33"]];
         webView.delegate = self;
@@ -57,12 +56,59 @@ NSString *kPassword = @"HelloJuniorYear2012";
     }
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    //tableViewOne.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    tableViewTwo.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    tableViewThree.contentInset = tableViewTwo.contentInset;
+    tableViewTwo.backgroundColor = COLOR_BG_GRAY;
+    tableViewThree.backgroundColor = COLOR_BG_GRAY;
+    
+    tableViewOne.separatorColor = COLOR_LINE_GRAY;
+    tableViewTwo.separatorColor = COLOR_LINE_GRAY;
+    tableViewThree.separatorColor = COLOR_LINE_GRAY;
+
+    tableViewOne.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    tableViewTwo.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    tableViewThree.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
+    
+    tableViewOne.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tableViewTwo.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tableViewThree.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UIView *lineOne = [[UIView alloc] initWithFrame:CGRectMake(341.5683, 0, 0.5, 768)];
+    lineOne.backgroundColor = COLOR_LINE_GRAY;
+    [self.navigationController.view addSubview:lineOne];
+    
+    UIView *lineTwo = [[UIView alloc] initWithFrame:CGRectMake(341+342, 0, 0.5, 768)];
+    lineTwo.backgroundColor = COLOR_LINE_GRAY;
+    [self.navigationController.view addSubview:lineTwo];
+    
+    UILabel *labelOne = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 341, 44)];
+    labelOne.textAlignment = NSTextAlignmentCenter;
+    labelOne.textColor = COLOR_MEDIUM_GRAY;
+    labelOne.text = @"Your Events";
+    labelOne.font = [UIFont fontWithName:@"OpenSans" size:17];
+    [self.navigationController.view addSubview:labelOne];
+    
+    UILabel *labelTwo = [[UILabel alloc] initWithFrame:CGRectMake(341, 20, 341, 44)];
+    labelTwo.textAlignment = NSTextAlignmentCenter;
+    labelTwo.textColor = COLOR_MEDIUM_GRAY;
+    labelTwo.text = @"Signed in users";
+    labelTwo.font = [UIFont fontWithName:@"OpenSans" size:17];
+    [self.navigationController.view addSubview:labelTwo];
+    
+    UILabel *labelThree = [[UILabel alloc] initWithFrame:CGRectMake(683, 20, 341, 44)];
+    labelThree.textAlignment = NSTextAlignmentCenter;
+    labelThree.textColor = COLOR_MEDIUM_GRAY;
+    labelThree.text = @"Other registered users";
+    labelThree.font = [UIFont fontWithName:@"OpenSans" size:17];
+    [self.navigationController.view addSubview:labelThree];
 }
+
 -(void)receivedData:(NSData *)data{
-    NSString *dataString = [NSString stringWithFormat:@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
+    //NSString *dataString = [NSString stringWithFormat:@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]];
     NSError *error = nil;
-    Firebase *f = [[Firebase alloc] initWithUrl:@"https://luminous-fire-5364.firebaseio.com/"];
+    //Firebase *f = [[Firebase alloc] initWithUrl:@"https://luminous-fire-5364.firebaseio.com/"];
     //NSString *eventbriteID = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *d = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
@@ -74,12 +120,11 @@ NSString *kPassword = @"HelloJuniorYear2012";
     NSMutableDictionary *ok = [[NSMutableDictionary alloc]init];
     [ok setObject:@{@"name":person.name, @"check_in":@YES,@"email":person.email} forKey:person.userID];
     
-    [[f childByAppendingPath:@"id"] updateChildValues:ok];
+    //[[f childByAppendingPath:@"id"] updateChildValues:ok];
     
-    [f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"UPDATED %@ -> %@", snapshot.name, snapshot.value);
-    }];
-    
+    //[f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    //    NSLog(@"UPDATED %@ -> %@", snapshot.name, snapshot.value);
+    //}];
     
     [arrayOfSignedIn addObject:person];
     [signedInTableView reloadData];
@@ -135,10 +180,8 @@ NSString *kPassword = @"HelloJuniorYear2012";
     }
     return params;
 }
--(void)loadEventDataWithAccessToken:(NSString*)s
-{
-    NSString *accessToken = s;
 
+- (void)loadEventDataWithAccessToken:(NSString*)accessToken {
     NSData *data0 = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.eventbriteapi.com/v3/users/me/?token=%@",accessToken]]];
     NSError *error = nil;
     NSDictionary *resultsDictionary0 = [NSJSONSerialization JSONObjectWithData:data0 options:kNilOptions error:&error];
@@ -161,8 +204,8 @@ NSString *kPassword = @"HelloJuniorYear2012";
     
     [eventsTableView reloadData];
 }
--(void)loadAttendeesWithAccessToken:(NSString*)s
-{
+
+-(void)loadAttendeesWithAccessToken:(NSString*)s {
     Event *event = [arrayOfEvents objectAtIndex:currentIndex];
     NSString *eventID = event.eventID;
     
@@ -188,22 +231,14 @@ NSString *kPassword = @"HelloJuniorYear2012";
         NSLog(@"%@",arrayOfNotSignedIn);
     }
 }
-#pragma  mark UITableViewDataSource
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView.tag == kEventsTableViewTag) {
-        return 60;
-    }
-    else if (tableView.tag == kSignedInTableViewTag) {
-        return 60;
-    }
-    else if (tableView.tag == kNotSignedInTableViewTag) {
-        return 60;
-    }
-    return 0;
+
+#pragma  mark UITableView
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
 }
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView.tag == kEventsTableViewTag) {
         return arrayOfEvents.count;
     }
@@ -215,42 +250,64 @@ NSString *kPassword = @"HelloJuniorYear2012";
     }
     return 0;
 }
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 17, 331, 19)];
+    title.textColor = COLOR_MEDIUM_GRAY;
+    title.font = [UIFont fontWithName:@"OpenSans-Semibold" size:15];
+    [cell.contentView addSubview:title];
+    
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(10, 36, 331, 16)];
+    text.textColor = COLOR_MEDIUM_GRAY;
+    text.font = [UIFont fontWithName:@"OpenSans" size:12];
+    [cell.contentView addSubview:text];
+    
     if (tableView.tag == kEventsTableViewTag) {
         Event *event = [arrayOfEvents objectAtIndex:indexPath.row];
-        NSString *urlString = event.logo_url;
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 50, 50)];
+        
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12.5, 45, 45)];
         imageView.layer.cornerRadius = imageView.frame.size.height/2;
         imageView.layer.masksToBounds = YES;
-        [imageView setImageWithURL:[NSURL URLWithString:urlString]];
+        [imageView setImageWithURL:[NSURL URLWithString:event.logo_url]];
         [cell addSubview:imageView];
-        cell.textLabel.text= event.name;
-    }
-    else if (tableView.tag == kSignedInTableViewTag) {
+        
+        title.frame = CGRectMake(64, 17, 331, 19);
+        text.frame = CGRectMake(64, 36, 331, 17);
+        title.text = event.name;
+        text.text = @"50% signed in";
+    } else if (tableView.tag == kSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
+        
         person = [arrayOfSignedIn objectAtIndex:indexPath.row];
-        cell.textLabel.text = person.name;
-    }
-    else if (tableView.tag == kNotSignedInTableViewTag) {
+        
+        title.text = [NSString stringWithFormat:@"%@ - XS",person.name];
+        text.text = @"";
+    } else if (tableView.tag == kNotSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
+        
         person = [arrayOfNotSignedIn objectAtIndex:indexPath.row];
-        cell.textLabel.text = person.name;
+        
+        title.text = person.name;
+        text.text = @"Signed up on 4/6/14 @ 3:23PM";
     }
     
     return cell;
 }
-#pragma mark UITableViewDelegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Ready for Pickup" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
     actionSheet.tag = indexPath.row;
     [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
 }
+
+
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -267,8 +324,8 @@ NSString *kPassword = @"HelloJuniorYear2012";
         
         [msg sendWithWeb];
     }
-    //NSLog(@"button %ld clicked", (long)buttonIndex);
 }
+
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
     [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
         if ([_currentView isKindOfClass:[UIButton class]]) {
