@@ -179,6 +179,8 @@ NSString *kPassword = @"HelloJuniorYear2012";
         NSString *lastName = [[[attendees objectAtIndex:i] objectForKey:@"profile"]objectForKey:@"last_name"];
         person.email = [[[attendees objectAtIndex:i]objectForKey:@"profile"] objectForKey:@"email"];
         person.name = [firstName stringByAppendingString:[NSString stringWithFormat:@" %@",lastName]];
+        person.dateCreated = [[attendees objectAtIndex:i] objectForKey:@"created"];
+        person.tshirt = [[[[attendees objectAtIndex:i] objectForKey:@"answers"] firstObject] objectForKey:@"answer"];
         
         if (![arrayOfSignedIn containsObject:person]) {
             [arrayOfNotSignedIn addObject:person];
@@ -245,7 +247,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Ready for Pickup" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
     actionSheet.tag = indexPath.row;
     [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
 }

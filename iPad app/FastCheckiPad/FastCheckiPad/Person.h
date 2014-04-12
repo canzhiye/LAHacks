@@ -13,8 +13,12 @@
     NSString *name;
     NSString *userID;
     NSString *email;
+    NSString *dateCreated;
+    NSString *tshirt;
 }
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *userID;
 @property (nonatomic) NSString *email;
+@property (nonatomic) NSString *dateCreated;
+@property (nonatomic) NSString *tshirt;
 @end

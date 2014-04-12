@@ -12,5 +12,7 @@
 @synthesize userID;
 @synthesize name;
 @synthesize email;
+@synthesize dateCreated;
+@synthesize tshirt;
 
 @end
