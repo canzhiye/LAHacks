@@ -12,16 +12,13 @@
 #import <Firebase/Firebase.h>
 #import "JGBeacon.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate, JGBeaconDelegate>
+@interface ViewController : UIViewController <JGBeaconDelegate, UIWebViewDelegate>
 {
     UIWebView *webView;
     UIButton *loginWithEventbriteButton;
-    
-    UILabel *eventbriteIDLabel;
 }
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIButton *loginWithEventbriteButton;
-@property (nonatomic, retain) IBOutlet UILabel *eventbriteIDLabel;
 @property (nonatomic, weak) IBOutlet UITableView *beaconTableView;
 
 -(IBAction)loginWithEventbrite:(id)sender;
