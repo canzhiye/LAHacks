@@ -17,6 +17,10 @@
     NSMutableArray *arrayOfEvents;
     NSMutableArray *arrayOfSignedIn;
     NSMutableArray *arrayOfNotSignedIn;
+    
+    NSString *userID;
+    
+    int currentIndex;
 }
 @property (nonatomic, retain) IBOutlet UITableView *eventsTableView;
 @property (nonatomic, retain) IBOutlet UITableView *signedInTableView;

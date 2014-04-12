@@ -9,5 +9,8 @@
 #import "Person.h"
 
 @implementation Person
+@synthesize userID;
+@synthesize name;
+@synthesize email;
 
 @end

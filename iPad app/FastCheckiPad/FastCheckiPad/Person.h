@@ -9,5 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface Person : NSObject
-
+{
+    NSString *name;
+    NSString *userID;
+    NSString *email;
+}
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *userID;
+@property (nonatomic) NSString *email;
 @end

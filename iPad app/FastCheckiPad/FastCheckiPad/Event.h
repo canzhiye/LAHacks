@@ -9,5 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface Event : NSObject
+{
+    NSString *logo_url;
+    NSString *name;
+    NSNumber *registrants;
+    NSString *eventID;
+}
+@property (nonatomic) NSString *logo_url;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSNumber *registrants;
+@property (nonatomic) NSString *eventID;
 
 @end

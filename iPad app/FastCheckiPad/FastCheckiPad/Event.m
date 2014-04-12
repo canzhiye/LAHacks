@@ -9,5 +9,9 @@
 #import "Event.h"
 
 @implementation Event
+@synthesize logo_url;
+@synthesize name;
+@synthesize registrants;
+@synthesize eventID;
 
 @end
