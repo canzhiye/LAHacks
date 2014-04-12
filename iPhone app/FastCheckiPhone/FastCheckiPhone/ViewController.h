@@ -9,18 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreLocation/CoreLocation.h>
-#import <Firebase/Firebase.h>
+//#import <Firebase/Firebase.h>
 #import "JGBeacon.h"
 
-@interface ViewController : UIViewController <JGBeaconDelegate, UIWebViewDelegate>
-{
-    UIWebView *webView;
-    UIButton *loginWithEventbriteButton;
+@interface ViewController : UIViewController <JGBeaconDelegate, UITableViewDataSource, UITableViewDelegate> {
+    NSMutableArray *dataArray;
+    IBOutlet UITableView *tableView;
+    IBOutlet UIBarButtonItem *leftButton;
 }
-@property (nonatomic, retain) IBOutlet UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIButton *loginWithEventbriteButton;
-@property (nonatomic, weak) IBOutlet UITableView *beaconTableView;
 
--(IBAction)loginWithEventbrite:(id)sender;
+- (IBAction)logout:(id)sender;
 
 @end

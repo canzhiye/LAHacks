@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E3B734418F9BADF003918FB /* NSDictionary+BVJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B734318F9BADF003918FB /* NSDictionary+BVJSONString.m */; };
+		3E6EE6D218F977F600E437EB /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */; };
+		3E6EE6D318F977F600E437EB /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */; };
+		3E6EE6D418F977F600E437EB /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */; };
+		3E6EE6D518F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CB18F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf */; };
+		3E6EE6D618F977F600E437EB /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CC18F977F600E437EB /* OpenSans-Italic.ttf */; };
+		3E6EE6D718F977F600E437EB /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CD18F977F600E437EB /* OpenSans-Light.ttf */; };
+		3E6EE6D818F977F600E437EB /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CE18F977F600E437EB /* OpenSans-LightItalic.ttf */; };
+		3E6EE6D918F977F600E437EB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CF18F977F600E437EB /* OpenSans-Regular.ttf */; };
+		3E6EE6DA18F977F600E437EB /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6D018F977F600E437EB /* OpenSans-Semibold.ttf */; };
+		3E6EE6DB18F977F600E437EB /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6D118F977F600E437EB /* OpenSans-SemiboldItalic.ttf */; };
+		3E6EE6DE18F984C100E437EB /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EE6DD18F984C100E437EB /* loginViewController.m */; };
 		FCB6E90B18F917FE00A7328A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E90A18F917FE00A7328A /* Foundation.framework */; };
 		FCB6E90D18F917FE00A7328A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E90C18F917FE00A7328A /* CoreGraphics.framework */; };
 		FCB6E90F18F917FE00A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E90E18F917FE00A7328A /* UIKit.framework */; };
@@ -23,7 +35,6 @@
 		FCB6E93618F917FE00A7328A /* FastCheckiPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6E93518F917FE00A7328A /* FastCheckiPhoneTests.m */; };
 		FCB6E98118F93D5100A7328A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98018F93D5100A7328A /* CoreLocation.framework */; };
 		FCB6E98318F93D5B00A7328A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */; };
-		FCB6E98718F9517F00A7328A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98618F9517F00A7328A /* Firebase.framework */; };
 		FCCE1F1C18F966A8000255CD /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1618F966A8000255CD /* JGBeacon.m */; };
 		FCCE1F1D18F966A8000255CD /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1818F966A8000255CD /* JGReceiveBeacon.m */; };
 		FCCE1F1E18F966A8000255CD /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1A18F966A8000255CD /* JGSendBeacon.m */; };
@@ -40,6 +51,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E3B734218F9BADF003918FB /* NSDictionary+BVJSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BVJSONString.h"; sourceTree = "<group>"; };
+		3E3B734318F9BADF003918FB /* NSDictionary+BVJSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BVJSONString.m"; sourceTree = "<group>"; };
+		3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		3E6EE6CB18F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		3E6EE6CC18F977F600E437EB /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		3E6EE6CD18F977F600E437EB /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		3E6EE6CE18F977F600E437EB /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		3E6EE6CF18F977F600E437EB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		3E6EE6D018F977F600E437EB /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		3E6EE6D118F977F600E437EB /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		3E6EE6DC18F984C100E437EB /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
+		3E6EE6DD18F984C100E437EB /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		FCB6E90718F917FE00A7328A /* FastCheckiPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastCheckiPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB6E90A18F917FE00A7328A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FCB6E90C18F917FE00A7328A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,7 +86,6 @@
 		FCB6E93518F917FE00A7328A /* FastCheckiPhoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastCheckiPhoneTests.m; sourceTree = "<group>"; };
 		FCB6E98018F93D5100A7328A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		FCB6E98618F9517F00A7328A /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
 		FCCE1F1518F966A8000255CD /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = ../../../JGBeacon/JGBeacon.h; sourceTree = "<group>"; };
 		FCCE1F1618F966A8000255CD /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = ../../../JGBeacon/JGBeacon.m; sourceTree = "<group>"; };
 		FCCE1F1718F966A8000255CD /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = ../../../JGBeacon/JGReceiveBeacon.h; sourceTree = "<group>"; };
@@ -77,7 +101,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB6E98318F93D5B00A7328A /* CoreBluetooth.framework in Frameworks */,
-				FCB6E98718F9517F00A7328A /* Firebase.framework in Frameworks */,
 				FCB6E98118F93D5100A7328A /* CoreLocation.framework in Frameworks */,
 				FCB6E90D18F917FE00A7328A /* CoreGraphics.framework in Frameworks */,
 				FCB6E90F18F917FE00A7328A /* UIKit.framework in Frameworks */,
@@ -120,7 +143,6 @@
 		FCB6E90918F917FE00A7328A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FCB6E98618F9517F00A7328A /* Firebase.framework */,
 				FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */,
 				FCB6E98018F93D5100A7328A /* CoreLocation.framework */,
 				FCB6E90A18F917FE00A7328A /* Foundation.framework */,
@@ -134,12 +156,16 @@
 		FCB6E91018F917FE00A7328A /* FastCheckiPhone */ = {
 			isa = PBXGroup;
 			children = (
+				3E3B734218F9BADF003918FB /* NSDictionary+BVJSONString.h */,
+				3E3B734318F9BADF003918FB /* NSDictionary+BVJSONString.m */,
 				FCCE1F1418F9669A000255CD /* JGBeacon */,
 				FCB6E91918F917FE00A7328A /* AppDelegate.h */,
 				FCB6E91A18F917FE00A7328A /* AppDelegate.m */,
 				FCB6E91C18F917FE00A7328A /* Main.storyboard */,
 				FCB6E91F18F917FE00A7328A /* ViewController.h */,
 				FCB6E92018F917FE00A7328A /* ViewController.m */,
+				3E6EE6DC18F984C100E437EB /* loginViewController.h */,
+				3E6EE6DD18F984C100E437EB /* loginViewController.m */,
 				FCB6E92218F917FE00A7328A /* Images.xcassets */,
 				FCB6E91118F917FE00A7328A /* Supporting Files */,
 			);
@@ -149,6 +175,16 @@
 		FCB6E91118F917FE00A7328A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */,
+				3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */,
+				3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */,
+				3E6EE6CB18F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf */,
+				3E6EE6CC18F977F600E437EB /* OpenSans-Italic.ttf */,
+				3E6EE6CD18F977F600E437EB /* OpenSans-Light.ttf */,
+				3E6EE6CE18F977F600E437EB /* OpenSans-LightItalic.ttf */,
+				3E6EE6CF18F977F600E437EB /* OpenSans-Regular.ttf */,
+				3E6EE6D018F977F600E437EB /* OpenSans-Semibold.ttf */,
+				3E6EE6D118F977F600E437EB /* OpenSans-SemiboldItalic.ttf */,
 				FCB6E91218F917FE00A7328A /* FastCheckiPhone-Info.plist */,
 				FCB6E91318F917FE00A7328A /* InfoPlist.strings */,
 				FCB6E91618F917FE00A7328A /* main.m */,
@@ -265,9 +301,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E6EE6DA18F977F600E437EB /* OpenSans-Semibold.ttf in Resources */,
+				3E6EE6DB18F977F600E437EB /* OpenSans-SemiboldItalic.ttf in Resources */,
 				FCB6E92318F917FE00A7328A /* Images.xcassets in Resources */,
+				3E6EE6D918F977F600E437EB /* OpenSans-Regular.ttf in Resources */,
+				3E6EE6D618F977F600E437EB /* OpenSans-Italic.ttf in Resources */,
+				3E6EE6D518F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				FCB6E91518F917FE00A7328A /* InfoPlist.strings in Resources */,
+				3E6EE6D818F977F600E437EB /* OpenSans-LightItalic.ttf in Resources */,
+				3E6EE6D218F977F600E437EB /* OpenSans-Bold.ttf in Resources */,
 				FCB6E91E18F917FE00A7328A /* Main.storyboard in Resources */,
+				3E6EE6D718F977F600E437EB /* OpenSans-Light.ttf in Resources */,
+				3E6EE6D318F977F600E437EB /* OpenSans-BoldItalic.ttf in Resources */,
+				3E6EE6D418F977F600E437EB /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +333,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB6E92118F917FE00A7328A /* ViewController.m in Sources */,
+				3E3B734418F9BADF003918FB /* NSDictionary+BVJSONString.m in Sources */,
 				FCCE1F1D18F966A8000255CD /* JGReceiveBeacon.m in Sources */,
 				FCB6E91B18F917FE00A7328A /* AppDelegate.m in Sources */,
+				3E6EE6DE18F984C100E437EB /* loginViewController.m in Sources */,
 				FCCE1F1C18F966A8000255CD /* JGBeacon.m in Sources */,
 				FCCE1F1E18F966A8000255CD /* JGSendBeacon.m in Sources */,
 				FCB6E91718F917FE00A7328A /* main.m in Sources */,
@@ -420,7 +468,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/canzhiye/AppDev/LAHacks,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPhone/FastCheckiPhone-Prefix.pch";
@@ -439,7 +486,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/canzhiye/AppDev/LAHacks,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPhone/FastCheckiPhone-Prefix.pch";

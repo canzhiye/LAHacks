@@ -197,7 +197,7 @@
     }
 }
 
--(void)queueDataToSend:(NSData*)data{
+- (void)queueDataToSend:(NSData*)data{
     [self.dataToSend addObject:data];
     if (!self.sending && self.subscribers.count > 0) [self sendData];
 }
