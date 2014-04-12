@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CE7D1E06-3C7A-4BD3-B2B2-8F955F27543A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FastCheckiPad</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6E2978C8-2AC7-4AF1-A870-0A5199202E30</key>
+		<string>https://github.com/canzhiye/LAHacks.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iPad app/FastCheckiPad/FastCheckiPad.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6E2978C8-2AC7-4AF1-A870-0A5199202E30</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/canzhiye/LAHacks.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6E2978C8-2AC7-4AF1-A870-0A5199202E30</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6E2978C8-2AC7-4AF1-A870-0A5199202E30</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LAHacks</string>
+		</dict>
+	</array>
+</dict>
+</plist>
