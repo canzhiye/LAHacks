@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Firebase/Firebase.h>
+//#import <Firebase/Firebase.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "JGBeacon.h"
@@ -17,6 +17,8 @@
     NSMutableArray *arrayOfEvents;
     NSMutableArray *arrayOfSignedIn;
     NSMutableArray *arrayOfNotSignedIn;
+    
+    IBOutlet UITableView *tableViewOne, *tableViewTwo, *tableViewThree;
     
     NSString *userID;
     

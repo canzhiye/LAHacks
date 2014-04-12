@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E3B734F18F9F003003918FB /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734518F9F003003918FB /* OpenSans-Bold.ttf */; };
+		3E3B735018F9F003003918FB /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734618F9F003003918FB /* OpenSans-BoldItalic.ttf */; };
+		3E3B735118F9F003003918FB /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734718F9F003003918FB /* OpenSans-ExtraBold.ttf */; };
+		3E3B735218F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734818F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf */; };
+		3E3B735318F9F003003918FB /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734918F9F003003918FB /* OpenSans-Italic.ttf */; };
+		3E3B735418F9F003003918FB /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734A18F9F003003918FB /* OpenSans-Light.ttf */; };
+		3E3B735518F9F003003918FB /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734B18F9F003003918FB /* OpenSans-LightItalic.ttf */; };
+		3E3B735618F9F003003918FB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734C18F9F003003918FB /* OpenSans-Regular.ttf */; };
+		3E3B735718F9F003003918FB /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734D18F9F003003918FB /* OpenSans-Semibold.ttf */; };
+		3E3B735818F9F003003918FB /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B734E18F9F003003918FB /* OpenSans-SemiboldItalic.ttf */; };
 		FC674C3818F95B29001D68CE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3718F95B29001D68CE /* libicucore.dylib */; };
 		FC674C3A18F95B30001D68CE /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3918F95B30001D68CE /* libc++.dylib */; };
 		FC674C3C18F95B38001D68CE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3B18F95B38001D68CE /* CFNetwork.framework */; };
@@ -41,7 +51,6 @@
 		FCB6E96D18F9181800A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94F18F9181800A7328A /* UIKit.framework */; };
 		FCB6E97518F9181800A7328A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB6E97318F9181800A7328A /* InfoPlist.strings */; };
 		FCB6E97718F9181800A7328A /* FastCheckiPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6E97618F9181800A7328A /* FastCheckiPadTests.m */; };
-		FCB6E98918F9519400A7328A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98818F9519400A7328A /* Firebase.framework */; };
 		FCB6E98B18F951E300A7328A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98A18F951E300A7328A /* CoreLocation.framework */; };
 		FCB6E98D18F951E800A7328A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */; };
 		FCCE1F2718F966BE000255CD /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2118F966BE000255CD /* JGBeacon.m */; };
@@ -60,6 +69,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E3B734518F9F003003918FB /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		3E3B734618F9F003003918FB /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3E3B734718F9F003003918FB /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		3E3B734818F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		3E3B734918F9F003003918FB /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		3E3B734A18F9F003003918FB /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		3E3B734B18F9F003003918FB /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		3E3B734C18F9F003003918FB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		3E3B734D18F9F003003918FB /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		3E3B734E18F9F003003918FB /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		FC674C3718F95B29001D68CE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		FC674C3918F95B30001D68CE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		FC674C3B18F95B38001D68CE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -115,7 +134,6 @@
 		FCB6E97218F9181800A7328A /* FastCheckiPadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FastCheckiPadTests-Info.plist"; sourceTree = "<group>"; };
 		FCB6E97418F9181800A7328A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCB6E97618F9181800A7328A /* FastCheckiPadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastCheckiPadTests.m; sourceTree = "<group>"; };
-		FCB6E98818F9519400A7328A /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
 		FCB6E98A18F951E300A7328A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		FCCE1F2018F966BE000255CD /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = ../../../JGBeacon/JGBeacon.h; sourceTree = "<group>"; };
@@ -142,7 +160,6 @@
 				FCB6E94E18F9181800A7328A /* CoreGraphics.framework in Frameworks */,
 				FCB6E95018F9181800A7328A /* UIKit.framework in Frameworks */,
 				FCB6E94C18F9181800A7328A /* Foundation.framework in Frameworks */,
-				FCB6E98918F9519400A7328A /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +250,6 @@
 				FC674C3718F95B29001D68CE /* libicucore.dylib */,
 				FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */,
 				FCB6E98A18F951E300A7328A /* CoreLocation.framework */,
-				FCB6E98818F9519400A7328A /* Firebase.framework */,
 				FCB6E94B18F9181800A7328A /* Foundation.framework */,
 				FCB6E94D18F9181800A7328A /* CoreGraphics.framework */,
 				FCB6E94F18F9181800A7328A /* UIKit.framework */,
@@ -262,6 +278,16 @@
 		FCB6E95218F9181800A7328A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E3B734518F9F003003918FB /* OpenSans-Bold.ttf */,
+				3E3B734618F9F003003918FB /* OpenSans-BoldItalic.ttf */,
+				3E3B734718F9F003003918FB /* OpenSans-ExtraBold.ttf */,
+				3E3B734818F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf */,
+				3E3B734918F9F003003918FB /* OpenSans-Italic.ttf */,
+				3E3B734A18F9F003003918FB /* OpenSans-Light.ttf */,
+				3E3B734B18F9F003003918FB /* OpenSans-LightItalic.ttf */,
+				3E3B734C18F9F003003918FB /* OpenSans-Regular.ttf */,
+				3E3B734D18F9F003003918FB /* OpenSans-Semibold.ttf */,
+				3E3B734E18F9F003003918FB /* OpenSans-SemiboldItalic.ttf */,
 				FCB6E95318F9181800A7328A /* FastCheckiPad-Info.plist */,
 				FCB6E95418F9181800A7328A /* InfoPlist.strings */,
 				FCB6E95718F9181800A7328A /* main.m */,
@@ -378,9 +404,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3B735718F9F003003918FB /* OpenSans-Semibold.ttf in Resources */,
+				3E3B735818F9F003003918FB /* OpenSans-SemiboldItalic.ttf in Resources */,
 				FCB6E96418F9181800A7328A /* Images.xcassets in Resources */,
+				3E3B735618F9F003003918FB /* OpenSans-Regular.ttf in Resources */,
+				3E3B735318F9F003003918FB /* OpenSans-Italic.ttf in Resources */,
+				3E3B735218F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				FCB6E95618F9181800A7328A /* InfoPlist.strings in Resources */,
+				3E3B735518F9F003003918FB /* OpenSans-LightItalic.ttf in Resources */,
+				3E3B734F18F9F003003918FB /* OpenSans-Bold.ttf in Resources */,
 				FCB6E95F18F9181800A7328A /* Main.storyboard in Resources */,
+				3E3B735418F9F003003918FB /* OpenSans-Light.ttf in Resources */,
+				3E3B735018F9F003003918FB /* OpenSans-BoldItalic.ttf in Resources */,
+				3E3B735118F9F003003918FB /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
