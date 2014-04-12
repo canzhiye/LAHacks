@@ -110,6 +110,8 @@
             [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
         });
     }
+    else {
+    }
     
     [leftButton setTitleTextAttributes:@{
                                          NSFontAttributeName : [UIFont fontWithName:@"OpenSans" size:15.0],
