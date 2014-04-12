@@ -77,7 +77,6 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSegueWithIdentifier:@"login" sender:self];
         });
-        
     }
 }
 
@@ -130,7 +129,26 @@
     
     [self performSegueWithIdentifier:@"login" sender:self];
 }
+#pragma mark NSURL stuff
+/*
+ this method might be calling more than one times according to incoming data size
+ */
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    //[self.receivedData appendData:data];
+}
 
+/*
+ if there is an error occured, this method will be called by connection
+ */
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    
+    NSLog(@"%@" , error);
+}
+/*
+ if data is successfully received, this method will be called by connection
+ */
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+}
 #pragma mark - UITableView
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
