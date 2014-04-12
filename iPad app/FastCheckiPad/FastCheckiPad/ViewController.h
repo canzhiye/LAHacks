@@ -12,10 +12,14 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "JGBeacon.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate, JGBeaconDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate,JGBeaconDelegate, UITableViewDataSource, UITableViewDelegate>
 {
-    UILabel *connectedLabel;
+    NSMutableArray *arrayOfEvents;
+    NSMutableArray *arrayOfSignedIn;
+    NSMutableArray *arrayOfNotSignedIn;
 }
-@property (nonatomic, retain) IBOutlet UILabel *connectedLabel;
-@property (nonatomic, retain) IBOutlet UITableView *beaconTableView;
+@property (nonatomic, retain) IBOutlet UITableView *eventsTableView;
+@property (nonatomic, retain) IBOutlet UITableView *signedInTableView;
+@property (nonatomic, retain) IBOutlet UITableView *notSignedInTableView;
+
 @end

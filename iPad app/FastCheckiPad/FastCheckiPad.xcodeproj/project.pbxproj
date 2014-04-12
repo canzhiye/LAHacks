@@ -12,6 +12,8 @@
 		FC674C3C18F95B38001D68CE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3B18F95B38001D68CE /* CFNetwork.framework */; };
 		FC674C3E18F95B42001D68CE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3D18F95B42001D68CE /* Security.framework */; };
 		FC674C4018F95B4C001D68CE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3F18F95B4C001D68CE /* SystemConfiguration.framework */; };
+		FC8BDC7F18F9921E00A18FE4 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8BDC7E18F9921E00A18FE4 /* Person.m */; };
+		FC8BDC8218F9922B00A18FE4 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8BDC8118F9922B00A18FE4 /* Event.m */; };
 		FCB6E94C18F9181800A7328A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94B18F9181800A7328A /* Foundation.framework */; };
 		FCB6E94E18F9181800A7328A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94D18F9181800A7328A /* CoreGraphics.framework */; };
 		FCB6E95018F9181800A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94F18F9181800A7328A /* UIKit.framework */; };
@@ -50,6 +52,10 @@
 		FC674C3B18F95B38001D68CE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FC674C3D18F95B42001D68CE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FC674C3F18F95B4C001D68CE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FC8BDC7D18F9921E00A18FE4 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		FC8BDC7E18F9921E00A18FE4 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		FC8BDC8018F9922B00A18FE4 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		FC8BDC8118F9922B00A18FE4 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		FCB6E94818F9181800A7328A /* FastCheckiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastCheckiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB6E94B18F9181800A7328A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FCB6E94D18F9181800A7328A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC8BDC7C18F9920200A18FE4 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				FC8BDC7D18F9921E00A18FE4 /* Person.h */,
+				FC8BDC7E18F9921E00A18FE4 /* Person.m */,
+				FC8BDC8018F9922B00A18FE4 /* Event.h */,
+				FC8BDC8118F9922B00A18FE4 /* Event.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		FCB6E93F18F9181800A7328A = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +171,7 @@
 		FCB6E95118F9181800A7328A /* FastCheckiPad */ = {
 			isa = PBXGroup;
 			children = (
+				FC8BDC7C18F9920200A18FE4 /* Objects */,
 				FCCE1F1F18F966B2000255CD /* JGBeacon */,
 				FCB6E95A18F9181800A7328A /* AppDelegate.h */,
 				FCB6E95B18F9181800A7328A /* AppDelegate.m */,
@@ -308,7 +326,9 @@
 			files = (
 				FCB6E96218F9181800A7328A /* ViewController.m in Sources */,
 				FCCE1F2818F966BE000255CD /* JGReceiveBeacon.m in Sources */,
+				FC8BDC7F18F9921E00A18FE4 /* Person.m in Sources */,
 				FCB6E95C18F9181800A7328A /* AppDelegate.m in Sources */,
+				FC8BDC8218F9922B00A18FE4 /* Event.m in Sources */,
 				FCCE1F2718F966BE000255CD /* JGBeacon.m in Sources */,
 				FCCE1F2918F966BE000255CD /* JGSendBeacon.m in Sources */,
 				FCB6E95818F9181800A7328A /* main.m in Sources */,

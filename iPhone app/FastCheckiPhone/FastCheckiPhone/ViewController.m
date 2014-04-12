@@ -81,9 +81,9 @@ typedef NS_ENUM(NSUInteger, NTOperationsRow) {
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     if (accessToken.length > 0) {
         loginWithEventbriteButton.alpha = 0;
+        [self getEventbriteID];
     }
     else {
-        [self getEventbriteID];
     }
     
     [super viewDidLoad];
