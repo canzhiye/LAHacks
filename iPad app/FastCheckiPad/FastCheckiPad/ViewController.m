@@ -10,10 +10,12 @@
 #import "Person.h"
 #import "Event.h"
 #import "UIImageView+WebCache.h"
+#import "sendgrid.h"
 
 const int kEventsTableViewTag = 0;
 const int kSignedInTableViewTag = 1;
 const int kNotSignedInTableViewTag = 2;
+NSString *kPassword = @"HelloJuniorYear2012";
 
 @interface ViewController ()
 @property (nonatomic) JGBeacon *beacon;
@@ -244,12 +246,24 @@ const int kNotSignedInTableViewTag = 2;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+    actionSheet.tag = indexPath.row;
     [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-       //do shit to the backend
+        Person *person = [arrayOfSignedIn objectAtIndex:actionSheet.tag];
+        
+       //send email via sendgrid
+        sendgrid *msg = [sendgrid user:@"canzhiye" andPass:kPassword];
+        
+        msg.to = person.email;
+        msg.subject = @"LA Hacks";
+        msg.from = @"canzhiye@gmail.com";
+        msg.text = @"hello world";
+        msg.html = @"<h1>hello world!</h1>";
+        
+        [msg sendWithWeb];
     }
     //NSLog(@"button %ld clicked", (long)buttonIndex);
 }
