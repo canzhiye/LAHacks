@@ -21,6 +21,12 @@
 		FCB6E92C18F917FE00A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E90E18F917FE00A7328A /* UIKit.framework */; };
 		FCB6E93418F917FE00A7328A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB6E93218F917FE00A7328A /* InfoPlist.strings */; };
 		FCB6E93618F917FE00A7328A /* FastCheckiPhoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6E93518F917FE00A7328A /* FastCheckiPhoneTests.m */; };
+		FCB6E98118F93D5100A7328A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98018F93D5100A7328A /* CoreLocation.framework */; };
+		FCB6E98318F93D5B00A7328A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */; };
+		FCB6E98718F9517F00A7328A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98618F9517F00A7328A /* Firebase.framework */; };
+		FCCE1F1C18F966A8000255CD /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1618F966A8000255CD /* JGBeacon.m */; };
+		FCCE1F1D18F966A8000255CD /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1818F966A8000255CD /* JGReceiveBeacon.m */; };
+		FCCE1F1E18F966A8000255CD /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F1A18F966A8000255CD /* JGSendBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,16 @@
 		FCB6E93118F917FE00A7328A /* FastCheckiPhoneTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FastCheckiPhoneTests-Info.plist"; sourceTree = "<group>"; };
 		FCB6E93318F917FE00A7328A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCB6E93518F917FE00A7328A /* FastCheckiPhoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastCheckiPhoneTests.m; sourceTree = "<group>"; };
+		FCB6E98018F93D5100A7328A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		FCB6E98618F9517F00A7328A /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
+		FCCE1F1518F966A8000255CD /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = ../../../JGBeacon/JGBeacon.h; sourceTree = "<group>"; };
+		FCCE1F1618F966A8000255CD /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = ../../../JGBeacon/JGBeacon.m; sourceTree = "<group>"; };
+		FCCE1F1718F966A8000255CD /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = ../../../JGBeacon/JGReceiveBeacon.h; sourceTree = "<group>"; };
+		FCCE1F1818F966A8000255CD /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGReceiveBeacon.m; path = ../../../JGBeacon/JGReceiveBeacon.m; sourceTree = "<group>"; };
+		FCCE1F1918F966A8000255CD /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = ../../../JGBeacon/JGSendBeacon.h; sourceTree = "<group>"; };
+		FCCE1F1A18F966A8000255CD /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = ../../../JGBeacon/JGSendBeacon.m; sourceTree = "<group>"; };
+		FCCE1F1B18F966A8000255CD /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferService.h; path = ../../../JGBeacon/TransferService.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB6E98318F93D5B00A7328A /* CoreBluetooth.framework in Frameworks */,
+				FCB6E98718F9517F00A7328A /* Firebase.framework in Frameworks */,
+				FCB6E98118F93D5100A7328A /* CoreLocation.framework in Frameworks */,
 				FCB6E90D18F917FE00A7328A /* CoreGraphics.framework in Frameworks */,
 				FCB6E90F18F917FE00A7328A /* UIKit.framework in Frameworks */,
 				FCB6E90B18F917FE00A7328A /* Foundation.framework in Frameworks */,
@@ -101,6 +120,9 @@
 		FCB6E90918F917FE00A7328A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCB6E98618F9517F00A7328A /* Firebase.framework */,
+				FCB6E98218F93D5B00A7328A /* CoreBluetooth.framework */,
+				FCB6E98018F93D5100A7328A /* CoreLocation.framework */,
 				FCB6E90A18F917FE00A7328A /* Foundation.framework */,
 				FCB6E90C18F917FE00A7328A /* CoreGraphics.framework */,
 				FCB6E90E18F917FE00A7328A /* UIKit.framework */,
@@ -112,6 +134,7 @@
 		FCB6E91018F917FE00A7328A /* FastCheckiPhone */ = {
 			isa = PBXGroup;
 			children = (
+				FCCE1F1418F9669A000255CD /* JGBeacon */,
 				FCB6E91918F917FE00A7328A /* AppDelegate.h */,
 				FCB6E91A18F917FE00A7328A /* AppDelegate.m */,
 				FCB6E91C18F917FE00A7328A /* Main.storyboard */,
@@ -150,6 +173,20 @@
 				FCB6E93218F917FE00A7328A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCCE1F1418F9669A000255CD /* JGBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				FCCE1F1518F966A8000255CD /* JGBeacon.h */,
+				FCCE1F1618F966A8000255CD /* JGBeacon.m */,
+				FCCE1F1718F966A8000255CD /* JGReceiveBeacon.h */,
+				FCCE1F1818F966A8000255CD /* JGReceiveBeacon.m */,
+				FCCE1F1918F966A8000255CD /* JGSendBeacon.h */,
+				FCCE1F1A18F966A8000255CD /* JGSendBeacon.m */,
+				FCCE1F1B18F966A8000255CD /* TransferService.h */,
+			);
+			name = JGBeacon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +287,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB6E92118F917FE00A7328A /* ViewController.m in Sources */,
+				FCCE1F1D18F966A8000255CD /* JGReceiveBeacon.m in Sources */,
 				FCB6E91B18F917FE00A7328A /* AppDelegate.m in Sources */,
+				FCCE1F1C18F966A8000255CD /* JGBeacon.m in Sources */,
+				FCCE1F1E18F966A8000255CD /* JGSendBeacon.m in Sources */,
 				FCB6E91718F917FE00A7328A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +416,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/canzhiye/AppDev/LAHacks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPhone/FastCheckiPhone-Prefix.pch";
 				INFOPLIST_FILE = "FastCheckiPhone/FastCheckiPhone-Info.plist";
@@ -389,6 +435,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/canzhiye/AppDev/LAHacks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPhone/FastCheckiPhone-Prefix.pch";
 				INFOPLIST_FILE = "FastCheckiPhone/FastCheckiPhone-Info.plist";
@@ -456,6 +508,7 @@
 				FCB6E93B18F917FE00A7328A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCB6E93C18F917FE00A7328A /* Build configuration list for PBXNativeTarget "FastCheckiPhoneTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +517,7 @@
 				FCB6E93E18F917FE00A7328A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

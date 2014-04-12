@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
+#import <CoreLocation/CoreLocation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "JGBeacon.h"
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController <UIWebViewDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate, UITableViewDataSource, UITableViewDelegate, JGBeaconDelegate>
+{
+    UILabel *connectedLabel;
+}
+@property (nonatomic, retain) IBOutlet UILabel *connectedLabel;
+@property (nonatomic, retain) IBOutlet UITableView *beaconTableView;
 @end

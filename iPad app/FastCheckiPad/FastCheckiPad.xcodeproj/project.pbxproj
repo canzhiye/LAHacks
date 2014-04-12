@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC674C3818F95B29001D68CE /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3718F95B29001D68CE /* libicucore.dylib */; };
+		FC674C3A18F95B30001D68CE /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3918F95B30001D68CE /* libc++.dylib */; };
+		FC674C3C18F95B38001D68CE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3B18F95B38001D68CE /* CFNetwork.framework */; };
+		FC674C3E18F95B42001D68CE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3D18F95B42001D68CE /* Security.framework */; };
+		FC674C4018F95B4C001D68CE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC674C3F18F95B4C001D68CE /* SystemConfiguration.framework */; };
 		FCB6E94C18F9181800A7328A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94B18F9181800A7328A /* Foundation.framework */; };
 		FCB6E94E18F9181800A7328A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94D18F9181800A7328A /* CoreGraphics.framework */; };
 		FCB6E95018F9181800A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94F18F9181800A7328A /* UIKit.framework */; };
@@ -21,6 +26,12 @@
 		FCB6E96D18F9181800A7328A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E94F18F9181800A7328A /* UIKit.framework */; };
 		FCB6E97518F9181800A7328A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB6E97318F9181800A7328A /* InfoPlist.strings */; };
 		FCB6E97718F9181800A7328A /* FastCheckiPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB6E97618F9181800A7328A /* FastCheckiPadTests.m */; };
+		FCB6E98918F9519400A7328A /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98818F9519400A7328A /* Firebase.framework */; };
+		FCB6E98B18F951E300A7328A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98A18F951E300A7328A /* CoreLocation.framework */; };
+		FCB6E98D18F951E800A7328A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */; };
+		FCCE1F2718F966BE000255CD /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2118F966BE000255CD /* JGBeacon.m */; };
+		FCCE1F2818F966BE000255CD /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2318F966BE000255CD /* JGReceiveBeacon.m */; };
+		FCCE1F2918F966BE000255CD /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2518F966BE000255CD /* JGSendBeacon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC674C3718F95B29001D68CE /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		FC674C3918F95B30001D68CE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		FC674C3B18F95B38001D68CE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FC674C3D18F95B42001D68CE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FC674C3F18F95B4C001D68CE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FCB6E94818F9181800A7328A /* FastCheckiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastCheckiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB6E94B18F9181800A7328A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FCB6E94D18F9181800A7328A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +69,16 @@
 		FCB6E97218F9181800A7328A /* FastCheckiPadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FastCheckiPadTests-Info.plist"; sourceTree = "<group>"; };
 		FCB6E97418F9181800A7328A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FCB6E97618F9181800A7328A /* FastCheckiPadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastCheckiPadTests.m; sourceTree = "<group>"; };
+		FCB6E98818F9519400A7328A /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../Firebase.framework; sourceTree = "<group>"; };
+		FCB6E98A18F951E300A7328A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		FCCE1F2018F966BE000255CD /* JGBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGBeacon.h; path = ../../../JGBeacon/JGBeacon.h; sourceTree = "<group>"; };
+		FCCE1F2118F966BE000255CD /* JGBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGBeacon.m; path = ../../../JGBeacon/JGBeacon.m; sourceTree = "<group>"; };
+		FCCE1F2218F966BE000255CD /* JGReceiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGReceiveBeacon.h; path = ../../../JGBeacon/JGReceiveBeacon.h; sourceTree = "<group>"; };
+		FCCE1F2318F966BE000255CD /* JGReceiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGReceiveBeacon.m; path = ../../../JGBeacon/JGReceiveBeacon.m; sourceTree = "<group>"; };
+		FCCE1F2418F966BE000255CD /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = ../../../JGBeacon/JGSendBeacon.h; sourceTree = "<group>"; };
+		FCCE1F2518F966BE000255CD /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = ../../../JGBeacon/JGSendBeacon.m; sourceTree = "<group>"; };
+		FCCE1F2618F966BE000255CD /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferService.h; path = ../../../JGBeacon/TransferService.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +86,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC674C4018F95B4C001D68CE /* SystemConfiguration.framework in Frameworks */,
+				FC674C3E18F95B42001D68CE /* Security.framework in Frameworks */,
+				FC674C3C18F95B38001D68CE /* CFNetwork.framework in Frameworks */,
+				FC674C3A18F95B30001D68CE /* libc++.dylib in Frameworks */,
+				FC674C3818F95B29001D68CE /* libicucore.dylib in Frameworks */,
+				FCB6E98D18F951E800A7328A /* CoreBluetooth.framework in Frameworks */,
+				FCB6E98B18F951E300A7328A /* CoreLocation.framework in Frameworks */,
 				FCB6E94E18F9181800A7328A /* CoreGraphics.framework in Frameworks */,
 				FCB6E95018F9181800A7328A /* UIKit.framework in Frameworks */,
 				FCB6E94C18F9181800A7328A /* Foundation.framework in Frameworks */,
+				FCB6E98918F9519400A7328A /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +135,14 @@
 		FCB6E94A18F9181800A7328A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC674C3F18F95B4C001D68CE /* SystemConfiguration.framework */,
+				FC674C3D18F95B42001D68CE /* Security.framework */,
+				FC674C3B18F95B38001D68CE /* CFNetwork.framework */,
+				FC674C3918F95B30001D68CE /* libc++.dylib */,
+				FC674C3718F95B29001D68CE /* libicucore.dylib */,
+				FCB6E98C18F951E800A7328A /* CoreBluetooth.framework */,
+				FCB6E98A18F951E300A7328A /* CoreLocation.framework */,
+				FCB6E98818F9519400A7328A /* Firebase.framework */,
 				FCB6E94B18F9181800A7328A /* Foundation.framework */,
 				FCB6E94D18F9181800A7328A /* CoreGraphics.framework */,
 				FCB6E94F18F9181800A7328A /* UIKit.framework */,
@@ -112,6 +154,7 @@
 		FCB6E95118F9181800A7328A /* FastCheckiPad */ = {
 			isa = PBXGroup;
 			children = (
+				FCCE1F1F18F966B2000255CD /* JGBeacon */,
 				FCB6E95A18F9181800A7328A /* AppDelegate.h */,
 				FCB6E95B18F9181800A7328A /* AppDelegate.m */,
 				FCB6E95D18F9181800A7328A /* Main.storyboard */,
@@ -150,6 +193,20 @@
 				FCB6E97318F9181800A7328A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FCCE1F1F18F966B2000255CD /* JGBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				FCCE1F2018F966BE000255CD /* JGBeacon.h */,
+				FCCE1F2118F966BE000255CD /* JGBeacon.m */,
+				FCCE1F2218F966BE000255CD /* JGReceiveBeacon.h */,
+				FCCE1F2318F966BE000255CD /* JGReceiveBeacon.m */,
+				FCCE1F2418F966BE000255CD /* JGSendBeacon.h */,
+				FCCE1F2518F966BE000255CD /* JGSendBeacon.m */,
+				FCCE1F2618F966BE000255CD /* TransferService.h */,
+			);
+			name = JGBeacon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +307,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCB6E96218F9181800A7328A /* ViewController.m in Sources */,
+				FCCE1F2818F966BE000255CD /* JGReceiveBeacon.m in Sources */,
 				FCB6E95C18F9181800A7328A /* AppDelegate.m in Sources */,
+				FCCE1F2718F966BE000255CD /* JGBeacon.m in Sources */,
+				FCCE1F2918F966BE000255CD /* JGSendBeacon.m in Sources */,
 				FCB6E95818F9181800A7328A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,10 +438,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/canzhiye/AppDev/LAHacks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPad/FastCheckiPad-Prefix.pch";
 				INFOPLIST_FILE = "FastCheckiPad/FastCheckiPad-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -391,10 +458,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/canzhiye/AppDev/LAHacks,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastCheckiPad/FastCheckiPad-Prefix.pch";
 				INFOPLIST_FILE = "FastCheckiPad/FastCheckiPad-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -458,6 +531,7 @@
 				FCB6E97C18F9181800A7328A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCB6E97D18F9181800A7328A /* Build configuration list for PBXNativeTarget "FastCheckiPadTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +540,7 @@
 				FCB6E97F18F9181800A7328A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
