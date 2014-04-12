@@ -321,8 +321,8 @@ NSString *kPassword = @"HelloJuniorYear2012";
         
         [msg sendWithWeb];
     }
-    //NSLog(@"button %ld clicked", (long)buttonIndex);
 }
+
 - (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
     [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
         if ([_currentView isKindOfClass:[UIButton class]]) {
