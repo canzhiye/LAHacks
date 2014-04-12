@@ -12,7 +12,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "JGBeacon.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate,JGBeaconDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate,JGBeaconDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 {
     NSMutableArray *arrayOfEvents;
     NSMutableArray *arrayOfSignedIn;

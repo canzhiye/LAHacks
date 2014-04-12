@@ -69,20 +69,28 @@ const int kNotSignedInTableViewTag = 2;
     person.name = [d objectForKey:@"name"];
     person.email = [d objectForKey:@"email"];
     
-    [[f childByAppendingPath:person.userID] setValue:@{@"checked_in": @YES}];
-    [[f childByAppendingPath:person.userID] setValue:@{@"name": person.name}];
+    NSMutableDictionary *ok = [[NSMutableDictionary alloc]init];
+    [ok setObject:@{@"name":person.name, @"check_in":@YES,@"email":person.email} forKey:person.userID];
+    
+    [[f childByAppendingPath:@"id"] updateChildValues:ok];
     
     [f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         NSLog(@"UPDATED %@ -> %@", snapshot.name, snapshot.value);
     }];
     
+    
     [arrayOfSignedIn addObject:person];
     [signedInTableView reloadData];
     
-    if ([arrayOfNotSignedIn containsObject:person]) {
-        [arrayOfNotSignedIn removeObject:person];
-        [notSignedInTableView reloadData];
+    for (int i = 0; i < arrayOfNotSignedIn.count; i++) {
+        Person *p = [arrayOfNotSignedIn objectAtIndex:i];
+        NSLog(@"%@",p.email);
+        if ([p.email isEqualToString:person.email]) {
+            [arrayOfNotSignedIn removeObject:p];
+        }
     }
+    
+    [notSignedInTableView reloadData];
 }
 
 -(void)connectedToBeacon:(NSUUID *)identifier{
@@ -167,7 +175,7 @@ const int kNotSignedInTableViewTag = 2;
         person.userID = [[attendees objectAtIndex:i] objectForKey:@"id"];
         NSString *firstName = [[[attendees objectAtIndex:i] objectForKey:@"profile"]objectForKey:@"first_name"];
         NSString *lastName = [[[attendees objectAtIndex:i] objectForKey:@"profile"]objectForKey:@"last_name"];
-        
+        person.email = [[[attendees objectAtIndex:i]objectForKey:@"profile"] objectForKey:@"email"];
         person.name = [firstName stringByAppendingString:[NSString stringWithFormat:@" %@",lastName]];
         
         if (![arrayOfSignedIn containsObject:person]) {
@@ -180,13 +188,13 @@ const int kNotSignedInTableViewTag = 2;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == kEventsTableViewTag) {
-        return 44;
+        return 60;
     }
     else if (tableView.tag == kSignedInTableViewTag) {
-        return 44;
+        return 60;
     }
     else if (tableView.tag == kNotSignedInTableViewTag) {
-        return 44;
+        return 60;
     }
     return 0;
 }
@@ -210,13 +218,17 @@ const int kNotSignedInTableViewTag = 2;
     if (tableView.tag == kEventsTableViewTag) {
         Event *event = [arrayOfEvents objectAtIndex:indexPath.row];
         NSString *urlString = event.logo_url;
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 50, 50)];
+        imageView.layer.cornerRadius = imageView.frame.size.height/2;
+        imageView.layer.masksToBounds = YES;
         [imageView setImageWithURL:[NSURL URLWithString:urlString]];
         [cell addSubview:imageView];
         cell.textLabel.text= event.name;
     }
     else if (tableView.tag == kSignedInTableViewTag) {
-        
+        Person *person = [[Person alloc] init];
+        person = [arrayOfSignedIn objectAtIndex:indexPath.row];
+        cell.textLabel.text = person.name;
     }
     else if (tableView.tag == kNotSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
@@ -225,6 +237,30 @@ const int kNotSignedInTableViewTag = 2;
     }
     
     return cell;
+}
+#pragma mark UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+    [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+       //do shit to the backend
+    }
+    //NSLog(@"button %ld clicked", (long)buttonIndex);
+}
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+    [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
+        if ([_currentView isKindOfClass:[UIButton class]]) {
+            [((UIButton *)_currentView).titleLabel setFont:[UIFont boldSystemFontOfSize:20.f]];
+            // OR
+            //[((UIButton *)_currentView).titleLabel setFont:[UIFont fontWithName:@"Exo2-SemiBold" size:17]];
+        }
+    }];
 }
 - (void)didReceiveMemoryWarning
 {
