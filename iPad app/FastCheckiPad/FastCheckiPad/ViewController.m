@@ -487,21 +487,18 @@ NSString *kPassword = @"HelloJuniorYear2012";
         
     } else if (tableView.tag == kNotSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
-        
         person = [arrayOfNotSignedIn objectAtIndex:indexPath.row];
         
+        // ex: 2014-04-12T21:37:02Z
         NSDate *date = [[NSDate alloc] init];
-        //    "changed": "2014-04-12T21:37:02Z",
-
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateFormat = @"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"; //[NSDateFormatter dateFormatFromTemplate:@"YYYY-MM-DDTHH:MM:SSZ" options:kNilOptions locale:[NSLocale currentLocale]];
+        formatter.dateFormat = @"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'";
         formatter.locale = [NSLocale currentLocale];
-        
         date = [formatter dateFromString:person.dateCreated];
         
         NSDateFormatter *currentFormat = [[NSDateFormatter alloc]init];
         [currentFormat setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
-        currentFormat.dateFormat = @"MM'/'dd'/'YY HH':'mm";
+        currentFormat.dateFormat = @"MM'/'dd'/'YY' @ 'h':'mm a";
         
         title.text = person.name;
         text.text = [currentFormat stringFromDate:date];

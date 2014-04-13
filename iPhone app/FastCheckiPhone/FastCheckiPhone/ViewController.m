@@ -25,7 +25,7 @@
 #pragma mark - Bluetooth
 
 - (void)receivedData:(NSData *)data { NSLog(@"got data"); }
-- (void)connectedToBeacon:(NSUUID *)identifier { NSLog(@"connected"); }
+- (void)connectedToBeacon:(NSUUID *)identifier { NSLog(@"connected!!!"); }
 - (void)disconnectedFromBeacon:(NSUUID *)identifier{ NSLog(@"disconnected"); }
 
 #pragma mark - Set up
@@ -41,6 +41,7 @@
     
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
+    NSLog(@"user_json: %@",userId);
     if (accessToken.length > 0 && userId.length > 0) {
         [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
     }
@@ -110,31 +111,50 @@
     
     // Parse the data
     NSDictionary *theDictionary = [parser objectWithString:responseString error:nil];
-    NSLog(@"Get some data %@",theDictionary);
-    
     dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [dataArray removeAllObjects];
+        
+        // Loop through objects
+        if ([[theDictionary allKeys] containsObject:@"events"]) {
+            if ((int)[[theDictionary objectForKey:@"events"] count] > 0) {
+                NSArray *keys = [[theDictionary objectForKey:@"events"] allKeys];
+                for (NSString *key in keys) {
+                    NSDictionary *dictionary = [[theDictionary objectForKey:@"events"] objectForKey:key];
+                    NSString *name = [dictionary objectForKey:@"name"];
+                    NSString *timestamp = [NSString stringWithFormat:@"%d",[[dictionary objectForKey:@"timestamp"] intValue]];
+                    [dataArray addObject:@[
+                                           [NSString stringWithFormat:@"You signed into %@.",name],timestamp,name
+                                           ]];
+                }
+            }
+        }
+        
+        // Finish up
         [refreshControl endRefreshing];
         [tableView reloadData];
-        
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     });
 }
 
+- (void)subscribed:(NSNotification*)note {
+    NSLog(@"Send a message");
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
+    if (userId.length > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
+        });
+    }
+}
+
 - (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subscribed:) name:@"subscribed" object:nil];
+    
     tableView.backgroundColor = COLOR_BG_GRAY;
     tableView.separatorColor = COLOR_LINE_GRAY;
     tableView.separatorInset = UIEdgeInsetsMake(0, 10, 0, 0);
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     dataArray = [[NSMutableArray alloc] init];
-    [dataArray addObject:@[
-                           @"You signed into LAHacks.",@"123456789",@"LAHacks 2014"
-                           ]];
-    [dataArray addObject:@[
-                           @"You signed into LAHacks!.",@"123456789",@"LAHacks 2014!"
-                           ]];
-    [dataArray addObject:@[
-                           @"You signed into LAHacks!!.",@"123456789",@"LAHacks 2014!!"
-                           ]];
     
     [self setTitle:@"Notifications"];
     [super viewDidLoad];
@@ -146,15 +166,6 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [tableView addSubview:refreshControl];
-    
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
-    if (userId.length > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
-        });
-    }
-    else {
-    }
     
     [leftButton setTitleTextAttributes:@{
                                          NSFontAttributeName : [UIFont fontWithName:@"OpenSans" size:15.0],
@@ -209,7 +220,8 @@
     UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(10, title.frame.origin.y+title.frame.size.height-1.0f, 300, 17)];
     text.font = [UIFont fontWithName:@"OpenSans-Light" size:13];
     text.textColor = COLOR_MEDIUM_GRAY;
-    text.text = [self dateDiff:[[dataArray objectAtIndexedSubscript:indexPath.row] objectAtIndex:1]];
+    NSLog(@"time %@",[[dataArray objectAtIndex:indexPath.row] objectAtIndex:1]);
+    text.text = [self dateDiff:[[dataArray objectAtIndex:indexPath.row] objectAtIndex:1]];
     text.numberOfLines = 0;
     [text sizeToFit];
     [cell.contentView addSubview:text];
