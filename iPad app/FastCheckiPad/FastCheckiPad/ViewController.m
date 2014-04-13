@@ -372,6 +372,34 @@ NSString *kPassword = @"HelloJuniorYear2012";
 {
     
 }
+-(void)makeArrayForKloudless
+{
+//    [self csvLocation:@[
+//                        @[@"Name",@"Email",@"T-shirt Size",@"Date Signup",@"Date Checkin"],
+//                        @[@"Coulton Vento",@"coultonvento@gmail.com",@"S",@"1/1/14 @ 12:00AM",@"1/2/14 @ 10:00 AM"],
+//                        @[@"Canzhi Ye",@"canzhiye@gmail.com",@"S",@"1/1/14 @ 12:00AM",@"1/2/14 @ 10:00 AM"]
+//                        ]];
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    NSMutableArray *firstArray = [[NSMutableArray alloc]init];
+    [firstArray addObject:@"Name"];
+    [firstArray addObject:@"Email"];
+    [firstArray addObject:@"T-shirt Size"];
+    [firstArray addObject:@"Date Signup"];
+    [firstArray addObject:@"Date Checkin"];
+    [array addObject:firstArray];
+    for (int i = 0; i < arrayOfSignedIn.count; i++) {
+        Person *person = [arrayOfSignedIn objectAtIndex:i];
+        
+        NSMutableArray *otherArrays = [[NSMutableArray alloc]init];
+        [otherArrays addObject:person.name];
+        [otherArrays addObject:person.email];
+        [otherArrays addObject:person.tshirt];
+        [otherArrays addObject:person.dateCreated];
+        [otherArrays addObject:person.dateCreated];
+        
+        [array addObject:otherArrays];
+    }
+}
 - (NSString *)dateDiff:(NSString *)origDate {
     NSDate *oldDate = [NSDate dateWithTimeIntervalSince1970:[origDate integerValue]];
     NSDate *newDate = [NSDate date];
@@ -478,7 +506,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 12.5, 45, 45)];
             imageView.layer.cornerRadius = imageView.frame.size.height/2;
             imageView.layer.masksToBounds = YES;
-            [imageView setImageWithURL:[NSURL URLWithString:@"http://ebmedia.eventbrite.com/s3-build/images/5762279/31072625403/1/logo.png"]];
+            imageView.image = [UIImage imageNamed:@"triangle.png"];
             [cell addSubview:imageView];
             
             [title setTextColor:[UIColor grayColor]];
@@ -520,7 +548,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
         }
     }
 }
-
+#pragma mark action sheet
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {

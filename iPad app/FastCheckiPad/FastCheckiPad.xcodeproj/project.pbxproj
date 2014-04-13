@@ -66,6 +66,7 @@
 		FCCE1F2718F966BE000255CD /* JGBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2118F966BE000255CD /* JGBeacon.m */; };
 		FCCE1F2818F966BE000255CD /* JGReceiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2318F966BE000255CD /* JGReceiveBeacon.m */; };
 		FCCE1F2918F966BE000255CD /* JGSendBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1F2518F966BE000255CD /* JGSendBeacon.m */; };
+		FCDD619A18FB0E420056725B /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = FCDD619918FB0E420056725B /* triangle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		FCCE1F2418F966BE000255CD /* JGSendBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGSendBeacon.h; path = ../../../JGBeacon/JGSendBeacon.h; sourceTree = "<group>"; };
 		FCCE1F2518F966BE000255CD /* JGSendBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGSendBeacon.m; path = ../../../JGBeacon/JGSendBeacon.m; sourceTree = "<group>"; };
 		FCCE1F2618F966BE000255CD /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransferService.h; path = ../../../JGBeacon/TransferService.h; sourceTree = "<group>"; };
+		FCDD619918FB0E420056725B /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 				FCB6E95D18F9181800A7328A /* Main.storyboard */,
 				FCB6E96018F9181800A7328A /* ViewController.h */,
 				FCB6E96118F9181800A7328A /* ViewController.m */,
+				FCDD619918FB0E420056725B /* triangle.png */,
 				FCB6E96318F9181800A7328A /* Images.xcassets */,
 				FCB6E95218F9181800A7328A /* Supporting Files */,
 			);
@@ -477,6 +480,7 @@
 				FCB6E96418F9181800A7328A /* Images.xcassets in Resources */,
 				3E3B735618F9F003003918FB /* OpenSans-Regular.ttf in Resources */,
 				3E3B735318F9F003003918FB /* OpenSans-Italic.ttf in Resources */,
+				FCDD619A18FB0E420056725B /* triangle.png in Resources */,
 				3E3B735218F9F003003918FB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				FCB6E95618F9181800A7328A /* InfoPlist.strings in Resources */,
 				3E3B735518F9F003003918FB /* OpenSans-LightItalic.ttf in Resources */,
