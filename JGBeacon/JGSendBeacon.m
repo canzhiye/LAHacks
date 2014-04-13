@@ -8,6 +8,7 @@
 
 #import "JGSendBeacon.h"
 #import "TransferService.h"
+#import "JGBeacon.h"
 
 #if TARGET_OS_IPHONE
 #import <CoreBluetooth/CoreBluetooth.h>
@@ -89,8 +90,8 @@
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
     NSLog(@"Central subscribed to characteristic");
-    
     [self.subscribers addObject:central];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"subscribed" object:nil];
     
     // Start sending
     if (!self.sending) [self sendData];
