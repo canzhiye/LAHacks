@@ -113,9 +113,22 @@ NSString *kPassword = @"HelloJuniorYear2012";
     NSDictionary *d = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
     Person *person = [[Person alloc] init];
-    person.userID = [d objectForKey:@"id"];
-    person.name = [d objectForKey:@"name"];
-    person.email = [d objectForKey:@"email"];
+    
+    for (int i = 0; i < arrayOfNotSignedIn.count; i++) {
+        Person *p = [arrayOfNotSignedIn objectAtIndex:i];
+        
+        if ([p.email isEqualToString:[d objectForKey:@"email"]]) {
+            person = p;
+        }
+    }
+    if (person==nil) {
+        return;
+    }
+//    
+//    person.userID = [d objectForKey:@"id"];
+//    person.name = [d objectForKey:@"name"];
+//    person.email = [d objectForKey:@"email"];
+//    person.tshirt = [d objectForKey:@"tshirt"];
     
     NSMutableDictionary *ok = [[NSMutableDictionary alloc]init];
     [ok setObject:@{@"name":person.name, @"check_in":@YES,@"email":person.email} forKey:person.userID];
@@ -128,6 +141,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
     
     [arrayOfSignedIn addObject:person];
     [signedInTableView reloadData];
+    [eventsTableView reloadData];
     
     for (int i = 0; i < arrayOfNotSignedIn.count; i++) {
         Person *p = [arrayOfNotSignedIn objectAtIndex:i];
@@ -223,15 +237,63 @@ NSString *kPassword = @"HelloJuniorYear2012";
         person.email = [[[attendees objectAtIndex:i]objectForKey:@"profile"] objectForKey:@"email"];
         person.name = [firstName stringByAppendingString:[NSString stringWithFormat:@" %@",lastName]];
         person.dateCreated = [[attendees objectAtIndex:i] objectForKey:@"created"];
-        person.tshirt = [[[[attendees objectAtIndex:i] objectForKey:@"answers"] firstObject] objectForKey:@"answer"];
-        
+        NSString *t = [[[[attendees objectAtIndex:i] objectForKey:@"answers"] firstObject] objectForKey:@"answer"];
+        if (t == nil) {
+            person.tshirt = @"M";
+        } else {
+            person.tshirt = t;
+        }
+        //building the not signed in list
         if (![arrayOfSignedIn containsObject:person]) {
             [arrayOfNotSignedIn addObject:person];
         }
         NSLog(@"%@",arrayOfNotSignedIn);
     }
 }
-
+- (NSString *)dateDiff:(NSString *)origDate {
+    NSDate *oldDate = [NSDate dateWithTimeIntervalSince1970:[origDate integerValue]];
+    NSDate *newDate = [NSDate date];
+    double ti = [oldDate timeIntervalSinceDate:newDate];
+    ti = ti * -1;
+    
+    if (ti < 1) {
+        return @"1 second ago";
+    } else if (ti < 60) {
+        return [NSString stringWithFormat:@"%.0f seconds ago",ti];
+    } else if (ti < 3600) {
+        NSInteger diff = round(ti / 60);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return [NSString stringWithFormat:@"%ld minute%@ ago", (long)diff,plural];
+    } else if (ti < 86400) {
+        NSInteger diff = round(ti / 60 / 60);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return[NSString stringWithFormat:@"%ld hour%@ ago", (long)diff,plural];
+    } else if (ti < 604800) {
+        NSInteger diff = round(ti / 60 / 60 / 24);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return[NSString stringWithFormat:@"%ld day%@ ago", (long)diff,plural];
+    } else if (ti < 2629740) {
+        NSInteger diff = round(ti / 60 / 60 / 24 / 7);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return[NSString stringWithFormat:@"%ld week%@ ago", (long)diff,plural];
+    } else if (ti < 31556900) {
+        NSInteger diff = round(ti / 60 / 60 / 24 / 7 / 4.348);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return[NSString stringWithFormat:@"%ld month%@ ago", (long)diff,plural];
+    } else if (ti < 315569000) {
+        NSInteger diff = round(ti / 60 / 60 / 24 / 365);
+        NSString *plural = @"s";
+        if (diff == 1) { plural = @""; }
+        return[NSString stringWithFormat:@"%ld year%@ ago", (long)diff,plural];
+    } else {
+        return @"a long time ago";
+    }
+}
 #pragma  mark UITableView
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,21 +340,37 @@ NSString *kPassword = @"HelloJuniorYear2012";
         title.frame = CGRectMake(64, 17, 331, 19);
         text.frame = CGRectMake(64, 36, 331, 17);
         title.text = event.name;
-        text.text = @"50% signed in";
+        float percent = 100*((float)arrayOfSignedIn.count/((float)(arrayOfSignedIn.count+arrayOfNotSignedIn.count)));
+        NSLog(@"%lu",arrayOfSignedIn.count/(arrayOfSignedIn.count+arrayOfNotSignedIn.count));
+        text.text = [NSString stringWithFormat:@"%2.0f%@",percent,@"% signed in"];
     } else if (tableView.tag == kSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
         
         person = [arrayOfSignedIn objectAtIndex:indexPath.row];
         
-        title.text = [NSString stringWithFormat:@"%@ - XS",person.name];
-        text.text = @"";
+        title.text = [NSString stringWithFormat:@"%@ - %@",person.name,person.tshirt];
+        NSString *unixTimestamp = @"12345678";
+        text.text = [self dateDiff:unixTimestamp];
     } else if (tableView.tag == kNotSignedInTableViewTag) {
         Person *person = [[Person alloc] init];
         
         person = [arrayOfNotSignedIn objectAtIndex:indexPath.row];
         
+        NSDate *date = [[NSDate alloc] init];
+        //    "changed": "2014-04-12T21:37:02Z",
+
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"YYYY'-'MM'-'dd'T'HH':'mm':'ss'Z'"; //[NSDateFormatter dateFormatFromTemplate:@"YYYY-MM-DDTHH:MM:SSZ" options:kNilOptions locale:[NSLocale currentLocale]];
+        formatter.locale = [NSLocale currentLocale];
+        
+        date = [formatter dateFromString:person.dateCreated];
+        
+        NSDateFormatter *currentFormat = [[NSDateFormatter alloc]init];
+        [currentFormat setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
+        currentFormat.dateFormat = @"MM'/'dd'/'YY HH':'mm";
+        
         title.text = person.name;
-        text.text = @"Signed up on 4/6/14 @ 3:23PM";
+        text.text = [currentFormat stringFromDate:date];
     }
     
     return cell;
@@ -301,12 +379,10 @@ NSString *kPassword = @"HelloJuniorYear2012";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Ready for Pickup" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Ready for Pickup",nil];
     actionSheet.tag = indexPath.row;
     [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
 }
-
-
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
