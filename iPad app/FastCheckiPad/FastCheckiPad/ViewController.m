@@ -47,6 +47,24 @@ NSString *kPassword = @"HelloJuniorYear2012";
     if (accessToken.length > 0) {
         [self loadEventDataWithAccessToken:accessToken];
         [self loadAttendeesWithAccessToken:accessToken];
+        
+        Event *event = [arrayOfEvents objectAtIndex:currentIndex];
+        NSString *eventID = event.eventID;
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/events/%@/users",eventID]]];
+        [request setHTTPMethod:@"GET"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
+        
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+        [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+        [connection start];
+        
+        if(connection) {
+            NSLog(@"Connection Successful");
+        } else {
+            NSLog(@"Connection could not be made");
+        }
     } else {
         UIWebView* webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
         NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:@"https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=6DFNDX6C6HYXX5IY33"]];
@@ -101,24 +119,6 @@ NSString *kPassword = @"HelloJuniorYear2012";
     labelThree.text = @"Other registered users";
     labelThree.font = [UIFont fontWithName:@"OpenSans" size:17];
     [self.navigationController.view addSubview:labelThree];
-    
-    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
-    NSString *eventID = event.eventID;
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/event/%@/users",eventID]]];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-    [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    [connection start];
-    
-    if(connection) {
-        NSLog(@"Connection Successful");
-    } else {
-        NSLog(@"Connection could not be made");
-    }
 
     [super viewDidLoad];
 }
@@ -137,28 +137,32 @@ NSString *kPassword = @"HelloJuniorYear2012";
         
         if ([p.email isEqualToString:[d objectForKey:@"email"]]) {
             person = p;
+            break;
         }
     }
-    if (person==nil) {
+    if (person.email==nil) {
         return;
     }
+    
+    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
+    NSString *eventID = event.eventID;
     
     NSString *uid = person.userID;
     NSString *name = person.name;
     NSString *email = person.email;
     NSString *shirt = person.tshirt;
+    NSString *event_name = event.name;
     
-    NSString *post = [NSString stringWithFormat:@"&uid=%@&name=%@&email=%@&shirt=%@",uid,name,email,shirt];
+    NSString *post = [NSString stringWithFormat:@"&uid=%@&name=%@&email=%@&shirt=%@&event_name=%@",uid,name,email,shirt,event_name];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     //PRODUCTION [request setURL:[NSURL URLWithString:@"http://textplayapp.com/users/login"]];
-    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
-    NSString *eventID = event.eventID;
+    
 
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/event/%@",eventID]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/events/%@",eventID]]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -174,7 +178,13 @@ NSString *kPassword = @"HelloJuniorYear2012";
         NSLog(@"Connection could not be made");
     }
     
-    [arrayOfSignedIn addObject:person];
+    for (int i = 0; i < arrayOfNotSignedIn.count; i++) {
+        Person *p = [arrayOfNotSignedIn objectAtIndex:i];
+        if ([p.email isEqualToString:person.email]) {
+            [arrayOfSignedIn addObject:person];
+        }
+    }
+    
     [signedInTableView reloadData];
     [eventsTableView reloadData];
     
@@ -205,20 +215,43 @@ NSString *kPassword = @"HelloJuniorYear2012";
     NSString *eventID = event.eventID;
     
     NSString*compare = [NSString stringWithFormat:@"http://fastcheck.kywu.org/events/%@/users",eventID];
-
     
     if ([urlString isEqualToString:compare]) {
-        
+        NSError *error = nil;
+        NSDictionary* newDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+        NSLog(@"did Receive Data: %@", newDict);
+        NSLog(@"error %@", error);
+        if (!error && [[newDict objectForKey:@"success"] boolValue]==YES) {
+            NSArray *array = [newDict objectForKey:@"users"];
+            for (int i = 0; i < array.count; i++) {
+                Person *person = [[Person alloc]init];
+                person.userID = [[array objectAtIndex:i] objectForKey:@"uid"];
+                person.name = [[array objectAtIndex:i] objectForKey:@"name"];
+                person.email = [[array objectAtIndex:i] objectForKey:@"email"];
+                person.tshirt = [[array objectAtIndex:i] objectForKey:@"shirt"];
+                
+                [arrayOfSignedIn addObject:person];
+                for (int i = 0; i < arrayOfNotSignedIn.count; i++) {
+                    Person *p = [arrayOfNotSignedIn objectAtIndex:i];
+                    if ([person.email isEqualToString:p.email]) {
+                        [arrayOfNotSignedIn removeObject:person];
+                    }
+                }
+                [arrayOfNotSignedIn removeObject:person];
+//                if ([[[array objectAtIndex:i] objectForKey:@"completed"] boolValue] == YES) {
+//                }
+//                else {
+//                    [arrayOfNotSignedIn addObject:person];
+//                }
+            }
+        }
+        else{
+        }
+        [eventsTableView reloadData];
+        [signedInTableView reloadData];
     }
     
-    NSError *error = nil;
-    NSDictionary* newDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    NSLog(@"did Receive Data: %@", newDict);
-    NSLog(@"error %@", error);
-    if (!error) {
-    }
-    else{
-    }
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -447,13 +480,16 @@ NSString *kPassword = @"HelloJuniorYear2012";
     
     return cell;
 }
-
+#pragma mark UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Ready for Pickup",nil];
-    actionSheet.tag = indexPath.row;
-    [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
+    if (tableView.tag == kSignedInTableViewTag) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Email Hacker" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Ready for Pickup",nil];
+        actionSheet.tag = indexPath.row;
+        [actionSheet showFromRect:CGRectMake(0, 0, 120, 40) inView:[tableView cellForRowAtIndexPath:indexPath] animated:YES];
+
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
