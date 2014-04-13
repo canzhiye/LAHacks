@@ -20,6 +20,8 @@
     UIView *extraLine;
     
     int currentIndex;
+    int previousCount;
+    int currentCount;
 }
 
 - (IBAction)logout:(id)sender;

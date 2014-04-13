@@ -125,6 +125,7 @@
                     [dataArray addObject:@[
                                            [NSString stringWithFormat:@"You signed into %@.",name],timestamp,name
                                            ]];
+                    currentCount = dataArray.count;
                 }
             }
         }
@@ -132,9 +133,15 @@
         // Finish up
         [refreshControl endRefreshing];
         [tableView reloadData];
+        
+        if (currentCount > previousCount) {
+            previousCount = currentCount;
+            [self displayCheckedInViewWithIndex:[NSNumber numberWithInt:currentIndex]];
+        }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     });
     
+    [self performSelector:@selector(getNotifications) withObject:nil afterDelay:3];
 }
 
 - (void)subscribed:(NSNotification*)note {
@@ -146,11 +153,15 @@
             [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
         });
     }
-    [self performSelector:@selector(displayCheckedInViewWithIndex:) withObject:[NSNumber numberWithInt:currentIndex] afterDelay:3];
+    [self performSelector:@selector(getNotifications) withObject:nil afterDelay:3];
+    //[self performSelector:<#(SEL)#> withObject:<#(id)#> afterDelay:<#(NSTimeInterval)#>]
+    //[self displayCheckedInViewWithIndex:[NSNumber numberWithInt:currentIndex]];
 }
 
 - (void)viewDidLoad {
     currentIndex = 0;
+    currentCount = 0;
+    previousCount = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subscribed:) name:@"subscribed" object:nil];
     
@@ -274,19 +285,21 @@
 }
 -(void)displayCheckedInViewWithIndex:(NSNumber*)index
 {
-    ticketViewController *ticket = (ticketViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ticketViewController"];
-    ticket.stringTitle = [[NSString alloc] init];
-    ticket.stringSubtitle = [[NSString alloc] init];
-    ticket.stringFooter = [[NSString alloc] init];
-    
-    SBJSON *parser = [[SBJSON alloc] init];
-    NSDictionary *json = [parser objectWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"]];
-    NSString *fullName = [json objectForKey:@"name"];
-    NSArray *fullNameArray = [fullName componentsSeparatedByString:@" "];
-    ticket.stringTitle = [NSString stringWithFormat:@"Welcome, %@!",[fullNameArray firstObject]];
-    ticket.stringSubtitle = @"You've been checked in.";
-    ticket.stringFooter = [[dataArray objectAtIndex:[index intValue]] objectAtIndex:2];
-    [self.navigationController presentViewController:ticket animated:YES completion:nil];
+    if (dataArray.count > 0) {
+        ticketViewController *ticket = (ticketViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ticketViewController"];
+        ticket.stringTitle = [[NSString alloc] init];
+        ticket.stringSubtitle = [[NSString alloc] init];
+        ticket.stringFooter = [[NSString alloc] init];
+        
+        SBJSON *parser = [[SBJSON alloc] init];
+        NSDictionary *json = [parser objectWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"]];
+        NSString *fullName = [json objectForKey:@"name"];
+        NSArray *fullNameArray = [fullName componentsSeparatedByString:@" "];
+        ticket.stringTitle = [NSString stringWithFormat:@"Welcome, %@!",[fullNameArray firstObject]];
+        ticket.stringSubtitle = @"You've been checked in.";
+        ticket.stringFooter = [[dataArray objectAtIndex:[index intValue]] objectAtIndex:2];
+        [self.navigationController presentViewController:ticket animated:YES completion:nil];
+    }
 }
 
 #pragma mark - Helpers -
