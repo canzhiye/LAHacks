@@ -214,6 +214,7 @@ NSString *kPassword = @"HelloJuniorYear2012";
     Event *event = [arrayOfEvents objectAtIndex:currentIndex];
     NSString *eventID = event.eventID;
     
+    
     NSString*compare = [NSString stringWithFormat:@"http://fastcheck.kywu.org/events/%@/users",eventID];
     
     if ([urlString isEqualToString:compare]) {
