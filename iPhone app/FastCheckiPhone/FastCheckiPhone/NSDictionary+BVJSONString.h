@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (BVJSONString)
--(NSString*) bv_jsonStringWithPrettyPrint:(BOOL) prettyPrint;
+
+- (NSString*) bv_jsonStringWithPrettyPrint:(BOOL) prettyPrint;
 
 @end

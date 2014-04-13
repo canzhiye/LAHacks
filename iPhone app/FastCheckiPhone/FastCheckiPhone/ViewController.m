@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSDictionary+BVJSONString.h"
+#import "JSON.h"
 
 @interface ViewController ()
 @property (nonatomic) JGBeacon* beacon;
@@ -48,9 +49,6 @@
                 // Nil data, don't crash!
                 if (data != nil) {
                     NSDictionary *resultsDictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                    
-                    NSLog(@"%@", resultsDictionary);
-                    
                     NSDictionary *dictionary = @{
                                                  @"id" : [resultsDictionary objectForKey:@"id"],
                                                  @"name" : [resultsDictionary objectForKey:@"name"]
@@ -65,6 +63,7 @@
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             
                             // GOGOGOGOGO
+                            [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
                             [self.beacon queueDataToSend:[[dictionary bv_jsonStringWithPrettyPrint:NO] dataUsingEncoding:NSUTF8StringEncoding]];
                         });
                     });
@@ -78,6 +77,24 @@
             [self performSegueWithIdentifier:@"login" sender:self];
         });
     }
+}
+
+- (void)getNotifications {
+    SBJSON *parser = [[SBJSON alloc] init];
+    NSDictionary *json = [parser objectWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"]];
+    NSString *url = [NSString stringWithFormat:@"http://fastcheck.kywu.org/users/%@/events", [json objectForKey:@"id"]];
+    
+    // Create the request
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
+    [request setHTTPMethod:@"GET"];
+    
+    NSHTTPURLResponse *response;
+    NSError *error = nil;
+    NSString *responseString = [[NSString alloc] initWithData:[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error] encoding:NSUTF8StringEncoding];
+    
+    // Parse the data
+    NSDictionary *theDictionary = [parser objectWithString:responseString error:nil];
+    NSLog(@"Get some data %@",theDictionary);
 }
 
 - (void)viewDidLoad {
@@ -103,9 +120,11 @@
     self.beacon.delegate = self;
     self.beacon.running = JGBeaconSendingOnly;
     
+    NSString *userId2 = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
     if (userId.length > 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
             [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
         });
     }
