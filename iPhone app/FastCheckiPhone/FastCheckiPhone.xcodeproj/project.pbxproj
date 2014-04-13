@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E02267C18FABE420063FFBB /* overlay-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E02267B18FABE420063FFBB /* overlay-icon.png */; };
 		3E3B734418F9BADF003918FB /* NSDictionary+BVJSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B734318F9BADF003918FB /* NSDictionary+BVJSONString.m */; };
 		3E3B736618FA3F45003918FB /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B735B18FA3F45003918FB /* NSObject+SBJSON.m */; };
 		3E3B736718FA3F45003918FB /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B735D18FA3F45003918FB /* NSString+SBJSON.m */; };
@@ -14,6 +15,7 @@
 		3E3B736918FA3F45003918FB /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B736118FA3F45003918FB /* SBJsonBase.m */; };
 		3E3B736A18FA3F45003918FB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B736318FA3F45003918FB /* SBJsonParser.m */; };
 		3E3B736B18FA3F45003918FB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B736518FA3F45003918FB /* SBJsonWriter.m */; };
+		3E3B737018FABAD9003918FB /* ticketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B736F18FABAD9003918FB /* ticketViewController.m */; };
 		3E6EE6D218F977F600E437EB /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */; };
 		3E6EE6D318F977F600E437EB /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */; };
 		3E6EE6D418F977F600E437EB /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */; };
@@ -57,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E02267B18FABE420063FFBB /* overlay-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay-icon.png"; sourceTree = "<group>"; };
 		3E3B734218F9BADF003918FB /* NSDictionary+BVJSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BVJSONString.h"; sourceTree = "<group>"; };
 		3E3B734318F9BADF003918FB /* NSDictionary+BVJSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BVJSONString.m"; sourceTree = "<group>"; };
 		3E3B735918FA3F45003918FB /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 		3E3B736318FA3F45003918FB /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		3E3B736418FA3F45003918FB /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		3E3B736518FA3F45003918FB /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		3E3B736E18FABAD9003918FB /* ticketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ticketViewController.h; sourceTree = "<group>"; };
+		3E3B736F18FABAD9003918FB /* ticketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ticketViewController.m; sourceTree = "<group>"; };
 		3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -214,6 +219,8 @@
 				FCB6E92018F917FE00A7328A /* ViewController.m */,
 				3E6EE6DC18F984C100E437EB /* loginViewController.h */,
 				3E6EE6DD18F984C100E437EB /* loginViewController.m */,
+				3E3B736E18FABAD9003918FB /* ticketViewController.h */,
+				3E3B736F18FABAD9003918FB /* ticketViewController.m */,
 				FCB6E92218F917FE00A7328A /* Images.xcassets */,
 				FCB6E91118F917FE00A7328A /* Supporting Files */,
 			);
@@ -223,6 +230,7 @@
 		FCB6E91118F917FE00A7328A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E02267B18FABE420063FFBB /* overlay-icon.png */,
 				3E6EE6C818F977F600E437EB /* OpenSans-Bold.ttf */,
 				3E6EE6C918F977F600E437EB /* OpenSans-BoldItalic.ttf */,
 				3E6EE6CA18F977F600E437EB /* OpenSans-ExtraBold.ttf */,
@@ -356,6 +364,7 @@
 				3E6EE6D618F977F600E437EB /* OpenSans-Italic.ttf in Resources */,
 				3E6EE6D518F977F600E437EB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				FCB6E91518F917FE00A7328A /* InfoPlist.strings in Resources */,
+				3E02267C18FABE420063FFBB /* overlay-icon.png in Resources */,
 				3E6EE6D818F977F600E437EB /* OpenSans-LightItalic.ttf in Resources */,
 				3E6EE6D218F977F600E437EB /* OpenSans-Bold.ttf in Resources */,
 				FCB6E91E18F917FE00A7328A /* Main.storyboard in Resources */,
@@ -390,6 +399,7 @@
 				3E3B736B18FA3F45003918FB /* SBJsonWriter.m in Sources */,
 				3E3B736618FA3F45003918FB /* NSObject+SBJSON.m in Sources */,
 				3E6EE6DE18F984C100E437EB /* loginViewController.m in Sources */,
+				3E3B737018FABAD9003918FB /* ticketViewController.m in Sources */,
 				FCCE1F1C18F966A8000255CD /* JGBeacon.m in Sources */,
 				FCCE1F1E18F966A8000255CD /* JGSendBeacon.m in Sources */,
 				FCB6E91718F917FE00A7328A /* main.m in Sources */,

@@ -21,7 +21,11 @@
 		<string>bluetooth-peripheral</string>
 		<string>bluetooth-central</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
 </dict>
 </plist>

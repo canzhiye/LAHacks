@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "NSDictionary+BVJSONString.h"
 #import "JSON.h"
+#import "ticketViewController.h"
 
 @interface ViewController ()
 @property (nonatomic) JGBeacon* beacon;
@@ -19,6 +20,7 @@
 #define COLOR_MEDIUM_GRAY [UIColor colorWithRed:(84.0/255.0) green:(84.0/255.0) blue:(84.0/255.0) alpha:1.0]
 #define COLOR_BG_GRAY [UIColor colorWithRed:(235.0/255.0) green:(235.0/255.0) blue:(235.0/255.0) alpha:1.0]
 #define COLOR_LINE_GRAY [UIColor colorWithRed:(180.0/255.0) green:(180.0/255.0) blue:(180.0/255.0) alpha:1.0]
+#define COLOR_HIGHLIGHT [UIColor colorWithRed:(80.0/255.0) green:(171.0/255.0) blue:(229.0/255.0) alpha:1.0]
 
 #pragma mark - Bluetooth
 
@@ -28,15 +30,25 @@
 
 #pragma mark - Set up
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    tableView.userInteractionEnabled = YES;
+    [tableView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // Have you logged in before?
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
+    if (accessToken.length > 0 && userId.length > 0) {
+        [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
+    }
+    
+    // Have you logged in before?
     if (accessToken.length > 0) {
         
         // Do you have a user id?
-        NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
         if (userId.length == 0) {
             
             // Let's do it in the background
@@ -63,7 +75,6 @@
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             
                             // GOGOGOGOGO
-                            [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
                             [self.beacon queueDataToSend:[[dictionary bv_jsonStringWithPrettyPrint:NO] dataUsingEncoding:NSUTF8StringEncoding]];
                         });
                     });
@@ -79,7 +90,12 @@
     }
 }
 
+- (void)pullToRefresh {
+    [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
+}
+
 - (void)getNotifications {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     SBJSON *parser = [[SBJSON alloc] init];
     NSDictionary *json = [parser objectWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"]];
     NSString *url = [NSString stringWithFormat:@"http://fastcheck.kywu.org/users/%@/events", [json objectForKey:@"id"]];
@@ -95,6 +111,13 @@
     // Parse the data
     NSDictionary *theDictionary = [parser objectWithString:responseString error:nil];
     NSLog(@"Get some data %@",theDictionary);
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [refreshControl endRefreshing];
+        [tableView reloadData];
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    });
 }
 
 - (void)viewDidLoad {
@@ -104,13 +127,13 @@
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     dataArray = [[NSMutableArray alloc] init];
     [dataArray addObject:@[
-                           @"You signed into LAHacks.",[self dateDiff:@"123456789"]
+                           @"You signed into LAHacks.",@"123456789",@"LAHacks 2014"
                            ]];
     [dataArray addObject:@[
-                           @"You signed into LAHacks.",[self dateDiff:@"123456789"]
+                           @"You signed into LAHacks!.",@"123456789",@"LAHacks 2014!"
                            ]];
     [dataArray addObject:@[
-                           @"You signed into LAHacks.",[self dateDiff:@"123456789"]
+                           @"You signed into LAHacks!!.",@"123456789",@"LAHacks 2014!!"
                            ]];
     
     [self setTitle:@"Notifications"];
@@ -120,11 +143,13 @@
     self.beacon.delegate = self;
     self.beacon.running = JGBeaconSendingOnly;
     
-    NSString *userId2 = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [tableView addSubview:refreshControl];
+    
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"];
     if (userId.length > 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self performSelectorInBackground:@selector(getNotifications) withObject:nil];
             [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
         });
     }
@@ -143,37 +168,35 @@
 }
 
 - (IBAction)logout:(id)sender {
+    tableView.userInteractionEnabled = NO;
+    [dataArray removeAllObjects];
+    
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"user_json"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"access_token"];
     
     [self performSegueWithIdentifier:@"login" sender:self];
 }
 #pragma mark NSURL stuff
-/*
- this method might be calling more than one times according to incoming data size
- */
+
+// this method might be calling more than one times according to incoming data size
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     //[self.receivedData appendData:data];
 }
 
-/*
- if there is an error occured, this method will be called by connection
- */
+// if there is an error occured, this method will be called by connection
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    
     NSLog(@"%@" , error);
 }
-/*
- if data is successfully received, this method will be called by connection
- */
--(void)connectionDidFinishLoading:(NSURLConnection *)connection{
-}
+
+// if data is successfully received, this method will be called by connection
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{ }
+
 #pragma mark - UITableView
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"message"];
-    cell.backgroundColor = [UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = COLOR_BG_GRAY;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 300, 20)];
     title.font = [UIFont fontWithName:@"OpenSans" size:15];
@@ -186,7 +209,7 @@
     UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(10, title.frame.origin.y+title.frame.size.height-1.0f, 300, 17)];
     text.font = [UIFont fontWithName:@"OpenSans-Light" size:13];
     text.textColor = COLOR_MEDIUM_GRAY;
-    text.text = [[dataArray objectAtIndexedSubscript:indexPath.row] objectAtIndex:1];
+    text.text = [self dateDiff:[[dataArray objectAtIndexedSubscript:indexPath.row] objectAtIndex:1]];
     text.numberOfLines = 0;
     [text sizeToFit];
     [cell.contentView addSubview:text];
@@ -210,12 +233,40 @@
     return text.frame.size.height+text.frame.origin.y+17.0f;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableViewTemp numberOfRowsInSection:(NSInteger)section {
+    [tableViewTemp sendSubviewToBack:refreshControl];
+    
+    // The top line is cool. add it
+    [extraLine removeFromSuperview];
+    if ([dataArray count] > 0) {
+        extraLine = [[UIView alloc] initWithFrame:CGRectMake(10, -0.5, 310, 0.5)];
+        extraLine.backgroundColor = COLOR_LINE_GRAY;
+        [tableViewTemp addSubview:extraLine];
+    }
+    
     return [dataArray count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+- (void)tableView:(UITableView *)tableViewTemp didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableViewTemp deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ticketViewController *ticket = (ticketViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ticketViewController"];
+    ticket.stringTitle = [[NSString alloc] init];
+    ticket.stringSubtitle = [[NSString alloc] init];
+    ticket.stringFooter = [[NSString alloc] init];
+    
+    SBJSON *parser = [[SBJSON alloc] init];
+    NSDictionary *json = [parser objectWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_json"]];
+    NSString *fullName = [json objectForKey:@"name"];
+    NSArray *fullNameArray = [fullName componentsSeparatedByString:@" "];
+    ticket.stringTitle = [NSString stringWithFormat:@"Welcome, %@!",[fullNameArray firstObject]];
+    ticket.stringSubtitle = @"You've been checked in.";
+    ticket.stringFooter = [[dataArray objectAtIndex:indexPath.row] objectAtIndex:2];
+    [self.navigationController presentViewController:ticket animated:YES completion:nil];
 }
 
 #pragma mark - Helpers -

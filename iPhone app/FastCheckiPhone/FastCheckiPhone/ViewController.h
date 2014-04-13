@@ -16,6 +16,8 @@
     NSMutableArray *dataArray;
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *leftButton;
+    UIRefreshControl *refreshControl;
+    UIView *extraLine;
 }
 
 - (IBAction)logout:(id)sender;
