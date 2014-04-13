@@ -134,6 +134,7 @@
         [tableView reloadData];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     });
+    
 }
 
 - (void)subscribed:(NSNotification*)note {
@@ -145,9 +146,12 @@
             [self.beacon queueDataToSend:[userId dataUsingEncoding:NSUTF8StringEncoding]];
         });
     }
+    [self performSelector:@selector(displayCheckedInViewWithIndex:) withObject:[NSNumber numberWithInt:currentIndex] afterDelay:3];
 }
 
 - (void)viewDidLoad {
+    currentIndex = 0;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subscribed:) name:@"subscribed" object:nil];
     
     tableView.backgroundColor = COLOR_BG_GRAY;
@@ -265,7 +269,11 @@
 
 - (void)tableView:(UITableView *)tableViewTemp didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableViewTemp deselectRowAtIndexPath:indexPath animated:YES];
-    
+    currentIndex = indexPath.row;
+    [self displayCheckedInViewWithIndex:[NSNumber numberWithInt:indexPath.row]];
+}
+-(void)displayCheckedInViewWithIndex:(NSNumber*)index
+{
     ticketViewController *ticket = (ticketViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ticketViewController"];
     ticket.stringTitle = [[NSString alloc] init];
     ticket.stringSubtitle = [[NSString alloc] init];
@@ -277,7 +285,7 @@
     NSArray *fullNameArray = [fullName componentsSeparatedByString:@" "];
     ticket.stringTitle = [NSString stringWithFormat:@"Welcome, %@!",[fullNameArray firstObject]];
     ticket.stringSubtitle = @"You've been checked in.";
-    ticket.stringFooter = [[dataArray objectAtIndex:indexPath.row] objectAtIndex:2];
+    ticket.stringFooter = [[dataArray objectAtIndex:[index intValue]] objectAtIndex:2];
     [self.navigationController presentViewController:ticket animated:YES completion:nil];
 }
 

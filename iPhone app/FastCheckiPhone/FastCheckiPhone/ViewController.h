@@ -18,6 +18,8 @@
     IBOutlet UIBarButtonItem *leftButton;
     UIRefreshControl *refreshControl;
     UIView *extraLine;
+    
+    int currentIndex;
 }
 
 - (IBAction)logout:(id)sender;
