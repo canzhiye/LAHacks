@@ -15,10 +15,13 @@
     NSString *email;
     NSString *dateCreated;
     NSString *tshirt;
+    BOOL completed;
 }
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *userID;
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *dateCreated;
 @property (nonatomic) NSString *tshirt;
+@property (nonatomic) BOOL completed;
+
 @end

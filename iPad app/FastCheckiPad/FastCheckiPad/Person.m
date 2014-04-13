@@ -14,5 +14,5 @@
 @synthesize email;
 @synthesize dateCreated;
 @synthesize tshirt;
-
+@synthesize completed;
 @end

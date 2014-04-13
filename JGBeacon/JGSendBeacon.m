@@ -8,6 +8,7 @@
 
 #import "JGSendBeacon.h"
 #import "TransferService.h"
+#import "JGBeacon.h"
 
 #if TARGET_OS_IPHONE
 #import <CoreBluetooth/CoreBluetooth.h>
