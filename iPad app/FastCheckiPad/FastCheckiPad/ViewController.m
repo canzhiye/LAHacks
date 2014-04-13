@@ -55,8 +55,6 @@ NSString *kPassword = @"HelloJuniorYear2012";
         [self.view addSubview:webView];
     }
     
-    [super viewDidLoad];
-    
     //tableViewOne.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     tableViewTwo.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     tableViewThree.contentInset = tableViewTwo.contentInset;
@@ -103,6 +101,26 @@ NSString *kPassword = @"HelloJuniorYear2012";
     labelThree.text = @"Other registered users";
     labelThree.font = [UIFont fontWithName:@"OpenSans" size:17];
     [self.navigationController.view addSubview:labelThree];
+    
+    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
+    NSString *eventID = event.eventID;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/event/%@/users",eventID]]];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+    [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [connection start];
+    
+    if(connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+
+    [super viewDidLoad];
 }
 
 -(void)receivedData:(NSData *)data{
@@ -124,20 +142,37 @@ NSString *kPassword = @"HelloJuniorYear2012";
     if (person==nil) {
         return;
     }
-//    
-//    person.userID = [d objectForKey:@"id"];
-//    person.name = [d objectForKey:@"name"];
-//    person.email = [d objectForKey:@"email"];
-//    person.tshirt = [d objectForKey:@"tshirt"];
     
-    NSMutableDictionary *ok = [[NSMutableDictionary alloc]init];
-    [ok setObject:@{@"name":person.name, @"check_in":@YES,@"email":person.email} forKey:person.userID];
+    NSString *uid = person.userID;
+    NSString *name = person.name;
+    NSString *email = person.email;
+    NSString *shirt = person.tshirt;
     
-    //[[f childByAppendingPath:@"id"] updateChildValues:ok];
+    NSString *post = [NSString stringWithFormat:@"&uid=%@&name=%@&email=%@&shirt=%@",uid,name,email,shirt];
     
-    //[f observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-    //    NSLog(@"UPDATED %@ -> %@", snapshot.name, snapshot.value);
-    //}];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    //PRODUCTION [request setURL:[NSURL URLWithString:@"http://textplayapp.com/users/login"]];
+    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
+    NSString *eventID = event.eventID;
+
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fastcheck.kywu.org/event/%@",eventID]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Current-Type"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+    [connection scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [connection start];
+    
+    if(connection) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
     
     [arrayOfSignedIn addObject:person];
     [signedInTableView reloadData];
@@ -161,6 +196,43 @@ NSString *kPassword = @"HelloJuniorYear2012";
 -(void)disconnectedFromBeacon:(NSUUID *)identifier{
     
 }
+
+#pragma mark URLConnection shit
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data {
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@",connection.currentRequest.URL];
+    Event *event = [arrayOfEvents objectAtIndex:currentIndex];
+    NSString *eventID = event.eventID;
+    
+    NSString*compare = [NSString stringWithFormat:@"http://fastcheck.kywu.org/events/%@/users",eventID];
+
+    
+    if ([urlString isEqualToString:compare]) {
+        
+    }
+    
+    NSError *error = nil;
+    NSDictionary* newDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSLog(@"did Receive Data: %@", newDict);
+    NSLog(@"error %@", error);
+    if (!error) {
+    }
+    else{
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    //This method , you can use to receive the error report in case of connection is not made to server.
+    NSLog(@"did Receive Error: %@", error);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"did Finish Loading: %@", connection);
+    
+}
+
 
 #pragma mark UIWebView Delegates
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
